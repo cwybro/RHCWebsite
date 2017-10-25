@@ -27,6 +27,8 @@ A `pull request` is a way of telling others that you have work you want them to 
 
 Click on the `Pull requests` tab and select `New pull request`. Make sure the `base` branch is set to wherever you'd like to merge your changes into (usually `master`), and the `compare` branch is set to your branch.
 
+**Remember:** Before a CI setup (automated testing server) is in place, make sure all tests pass locally before creating a pull request
+
 ----
 
 #### 4. Get approvals
