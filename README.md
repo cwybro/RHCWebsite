@@ -36,8 +36,11 @@ Let others know that you have a `pull request` that needs review, so that they m
 
 To review other's pull requests, visit the `Pull requests` tab. After selecting a PR to review, visit the `Files changed` to see a list of the changes.
 
-If the changes look good, click the `Review changes` button and select `Approve` and `Submit review`.
-If the code needs some changes, or you want to start a discussion, you may `Request changes` or `Comment`.
+If the changes look good, click the `Review changes` button and select `Approve` and `Submit review`
+* Also add the `ok-1` label if you're the first to approve, or `ok-2` otherwise to help others see what's been reviewed
+
+If the code needs some changes, or you want to start a discussion, you may `Request changes` or `Comment`
+* If comments are made, add the `comments` label to help others easily see that comments remain unhandled
 
 ----
 
