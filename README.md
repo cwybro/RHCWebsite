@@ -39,7 +39,7 @@ If the code needs some changes, or you want to start a discussion, you may `Requ
 
 ----
 
-#### 4. Merge Pull Request
+#### 4. Merge & Delete
 Once your `pull request` receives a sufficient number of `approvals`, and the code passes any existing tests, it is ready to be `merged` back to the base branch (usually `master` but could be another branch).
 
 After merging, you may `delete` the old branch.
