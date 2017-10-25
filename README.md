@@ -21,7 +21,7 @@ Once you have a new branch, you may begin committing and pushing changes.
 ----
 
 #### 3. Create Pull Request
-After you've completed work that you would like others to review, create a `pull request` (also a `pr`). 
+After you've completed work that you would like others to review, create a `pull request` (also a `PR`). 
 
 A `pull request` is a way of telling others that you have work you want them to check out.
 
@@ -31,6 +31,11 @@ Click on the `Pull requests` tab and select `New pull request`. Make sure the `b
 
 #### 4. Get approvals
 Let others know that you have a `pull request` that needs review, so that they may check out your changes and `approve` them or request changes
+
+To review other's pull requests, visit the `Pull requests` tab. After selecting a PR to review, visit the `Files changed` to see a list of the changes.
+
+If the changes look good, click the `Review changes` button and select `Approve` and `Submit review`.
+If the code needs some changes, or you want to start a discussion, you may `Request changes` or `Comment`.
 
 ----
 
