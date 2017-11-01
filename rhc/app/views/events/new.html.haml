@@ -1,0 +1,22 @@
+#main.container
+  %h3.header Create a New Event!
+
+  =form_for @event, :method => :post do |f|
+    .field
+      =f.label :title, "Title"
+      =f.text_field :title
+
+    .field
+      =f.label :description, "Description"
+      =f.text_field :description
+
+    .field
+      =f.label :address, "Address"
+      =f.text_field :address
+
+    .field
+      =f.label :datetime, "Date and Time"
+      =f.text_field :datetime
+
+    .field
+      =f.submit "Create event"
