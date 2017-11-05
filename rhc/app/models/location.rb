@@ -4,7 +4,5 @@ class Location < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode  # auto-fetch address
 
-  def address
-    Geocoder.address("#{latitude}, #{longitude}") || ""
-  end
+  attr_accessor :address
 end
