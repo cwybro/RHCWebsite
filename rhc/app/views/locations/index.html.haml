@@ -1,0 +1,15 @@
+%h3.header Locations
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Address
+
+  %tbody
+    -@locations.each do |loc|
+      %tr
+        %td.title #{loc.title}
+        %td.description #{loc.description}
+        %td.details #{loc.reverse_geocode}
