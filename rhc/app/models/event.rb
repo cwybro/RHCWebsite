@@ -4,6 +4,9 @@ class Event < ApplicationRecord
     validates :title, :description, :address, :datetime, presence: true
     validate :timeliness_of_datetime
 
+    has_many :taggings, dependent: :destroy
+    has_many :tags, through: :taggings
+
     def date
         self.datetime.to_date
     end
