@@ -1,0 +1,15 @@
+%h3.header Locations
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Address
+
+  %tbody
+    -@locations.each do |loc|
+      %tr
+        %td.title= link_to "#{loc.title}", location_path(loc)
+        %td.description #{loc.description}
+        %td.details #{loc.short_address}
