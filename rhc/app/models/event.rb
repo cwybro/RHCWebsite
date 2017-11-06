@@ -15,6 +15,15 @@ class Event < ApplicationRecord
         self.datetime.strfrmt('%l.%M %p')
     end
 
+    def all_tags=(names)
+        self.tags = names.split(",").map do |name|
+        Tag.where(name: name.strip).first_or_create!
+    end
+
+    def all_tags
+        self.tags.map(|t| t.name).join(", ")
+    end
+
     private
 
     def timeliness_of_datetime
