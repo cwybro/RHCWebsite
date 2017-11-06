@@ -19,6 +19,15 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:warning] = "Invalid id, event not found"
+      redirect_to events_path and return
+    end
+  end
+
   private
   def create_update_params
     params.require(:event).permit(:title, :description, :address, :datetime)

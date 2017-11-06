@@ -4,6 +4,11 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find(params[:id])
+    begin
+     @location = Location.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:warning] = "Invalid id, location not found"
+      redirect_to locations_path and return
+    end
   end
 end
