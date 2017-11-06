@@ -33,7 +33,7 @@ RSpec.describe Event, type: :model do
                                 ) }.to raise_exception ActiveRecord::RecordInvalid
     end
 
-    it "should be able to a tag to the tags list of the Event" do
+    it "should be able to add a tag to the tags list of the Event" do
         ev = Event.create!(title: "5k chirstmas charity run",
                           datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                           description: "Come and run the christmas 5K to raise money for the Madison

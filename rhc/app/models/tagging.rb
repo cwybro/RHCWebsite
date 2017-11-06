@@ -1,5 +1,5 @@
 class Tagging < ApplicationRecord
-  belongs_to :event
-  belongs_to :location
-  belongs_to :tag
+  belongs_to :event, optional:true
+  belongs_to :location, optional:true
+  belongs_to :tag, optional:true
 end

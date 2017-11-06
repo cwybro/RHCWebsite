@@ -16,5 +16,13 @@ RSpec.describe Location, type: :model do
     expect(coord.valid?).to eq false
     expect(desc.valid?).to eq false
   end
-  
+
+  it "should be able to add a tag to the tags list of the Event" do
+      location = Location.new(title: "Trudy Fiteness Center", latitude: 50.0000, longitude: 60.0000)
+      tag = Tag.create!(name: "Indoors")
+      location.tags << tag
+      expect(location.tags.size).to eq(1)
+      expect(location.tags.first.name).to eq("Indoors")
+  end
+
 end
