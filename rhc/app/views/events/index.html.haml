@@ -5,3 +5,5 @@
     - last_date = event.date
     %h3.date= event.readable_date
   %p.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
+
+%p.home-link= link_to "Back to Home", root_url
