@@ -15,8 +15,8 @@
       =f.text_field :address
 
     .field
-      =f.label :datetime, "Date and Time"
-      =f.text_field :datetime
-
+      = f.label :datetime, "Date and Time"
+      = f.datetime_field :datetime
     .field
-      =f.submit "Create event"
+      =f.submit
+      =link_to "Back to Events Page", events_path

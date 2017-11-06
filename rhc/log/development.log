@@ -215,3 +215,178 @@ Processing by EventsController#new as HTML
 Completed 200 OK in 190ms (Views: 155.7ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-11-05 18:51:36 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (10.1ms)
+Completed 200 OK in 330ms (Views: 298.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 18:51:40 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (221.4ms)
+Completed 500 Internal Server Error in 268ms (ActiveRecord: 3.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `input' for #<ActionView::Helpers::FormBuilder:0x007fd4311bed08>):
+    19:       =f.text_field :datetime
+    20: 
+    21:     .field
+    22:       = f.input :datetime, :placeholder => "MM/DD/YYYY", :input_html => {:class => "datepicker date-picker"}, :label => "Event date"
+    23:       .input-append.bootstrap-timepicker
+    24:         = f.input :datetime, :input_html => { :id => "datetime", :class => "input-append bootstrap-timepicker"}, :label => "at "
+  
+app/views/events/new.html.haml:22:in `block in _app_views_events_new_html_haml___4118000999081711740_70274666604900'
+app/views/events/new.html.haml:4:in `_app_views_events_new_html_haml___4118000999081711740_70274666604900'
+Started GET "/" for 127.0.0.1 at 2017-11-05 18:51:44 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (2.8ms)
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-05 18:52:47 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (16.7ms)
+Completed 200 OK in 70ms (Views: 58.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 18:52:48 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (228.7ms)
+Completed 500 Internal Server Error in 242ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `input' for #<ActionView::Helpers::FormBuilder:0x007fd42d442bf0>):
+    19:       =f.text_field :datetime
+    20: 
+    21:     .field
+    22:       = f.input :datetime, :placeholder => "MM/DD/YYYY", :input_html => {:class => "datepicker date-picker"}, :label => "Event date" 
+  
+app/views/events/new.html.haml:22:in `block in _app_views_events_new_html_haml___4118000999081711740_70274627028600'
+app/views/events/new.html.haml:4:in `_app_views_events_new_html_haml___4118000999081711740_70274627028600'
+Started GET "/" for 127.0.0.1 at 2017-11-05 18:52:55 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (7.1ms)
+Completed 200 OK in 52ms (Views: 47.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-05 20:22:32 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (16.1ms)
+Completed 200 OK in 60ms (Views: 50.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:22:35 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (20.6ms)
+Completed 200 OK in 43ms (Views: 36.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:23:37 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (4.7ms)
+Completed 200 OK in 26ms (Views: 24.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:24:17 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (6.1ms)
+Completed 200 OK in 30ms (Views: 28.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:24:32 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (48.3ms)
+Completed 200 OK in 88ms (Views: 79.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:24:45 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (7.7ms)
+Completed 200 OK in 30ms (Views: 28.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:26:24 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (8.4ms)
+Completed 200 OK in 35ms (Views: 32.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-05 20:52:58 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (14.5ms)
+Completed 200 OK in 71ms (Views: 65.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-05 20:53:23 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (41.2ms)
+Completed 200 OK in 184ms (Views: 165.7ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:53:24 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (28.5ms)
+Completed 200 OK in 181ms (Views: 63.9ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:53:26 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (10.3ms)
+Completed 200 OK in 40ms (Views: 35.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:53:28 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (12.0ms)
+Completed 200 OK in 48ms (Views: 44.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:53:30 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (10.0ms)
+Completed 200 OK in 42ms (Views: 38.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:54:08 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (172.6ms)
+Completed 200 OK in 239ms (Views: 221.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events" for 127.0.0.1 at 2017-11-05 20:54:10 -0500
+Processing by EventsController#index as HTML
+  Rendering events/index.html.haml within layouts/application
+  Rendered events/index.html.haml within layouts/application (6.2ms)
+Completed 200 OK in 43ms (Views: 39.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/events/new" for 127.0.0.1 at 2017-11-05 20:54:11 -0500
+Processing by EventsController#new as HTML
+  Rendering events/new.html.haml within layouts/application
+  Rendered events/new.html.haml within layouts/application (10.0ms)
+Completed 200 OK in 46ms (Views: 43.3ms | ActiveRecord: 0.0ms)
+
+
