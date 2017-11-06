@@ -21,7 +21,7 @@ class Event < ApplicationRecord
     end
 
     def all_tags
-        self.tags.map(|t| t.name).join(", ")
+        self.tags.map(&:name).join(", ")
     end
 
     private
