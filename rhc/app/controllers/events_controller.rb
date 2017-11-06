@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
   def index
+    @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
   end
 
   def new

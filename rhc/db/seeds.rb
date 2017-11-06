@@ -23,6 +23,10 @@ Event.create(title: "Slide down the hill",
             datetime: DateTime.iso8601('2018-01-01T04:05:06-05:00'),  # require 'date'
             description: "Rolling down the hill since 1819",
             address: "Colgate University")
+Event.create(title: "Slide down the other hill",
+            datetime: DateTime.iso8601('2018-01-01T04:10:06-05:00'),  # same date, different time as above.
+            description: "Rolling down the hill since 1819",
+            address: "Colgate University")
 Event.create(title: "10k around campus",
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
             description: "Come run with us!",

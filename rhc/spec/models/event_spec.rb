@@ -14,6 +14,8 @@ RSpec.describe Event, type: :model do
       expect(ev).to respond_to(:description)
       expect(ev).to respond_to(:address)
       expect(ev).to respond_to(:date)
+      expect(ev).to respond_to(:readable_date)
+      expect(ev).to respond_to(:area)
       expect(ev).to respond_to(:time)
     end
 
@@ -31,5 +33,22 @@ RSpec.describe Event, type: :model do
                                  Country Rural Health Council",
                                 address: "Trudy Fitness Center, Hamilton",
                                 ) }.to raise_exception ActiveRecord::RecordInvalid
+    end
+
+    it "should be able to reduce the address down to its broad area" do
+      ev = Event.create!(title: "5k chirstmas charity run",
+                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
+                         description: "Come and run the christmas 5K to raise money for the Madison
+                         Country Rural Health Council",
+                         address: "Trudy Fitness Center, Hamilton",
+                         )
+        expect(ev.area).to eq("Trudy Fitness Center, Hamilton")
+        ev = Event.create!(title: "5k chirstmas charity run",
+                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
+                         description: "Come and run the christmas 5K to raise money for the Madison
+                         Country Rural Health Council",
+                         address: "100 broad street, Hamilton, NY 13346",
+                         )
+        expect(ev.area).to eq("Hamilton, NY")
     end
 end
