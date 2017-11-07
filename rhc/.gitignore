@@ -2,6 +2,7 @@
 capybara-*.html
 .rspec
 /log
+coverage
 /.bundle/*
 /tmp
 /db/*.sqlite3

@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
   def index
+    @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
   end
 
   def new
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     end
   end
 
+
   def edit
     id = params[:id]
     @event = Event.find(id)
@@ -33,6 +35,15 @@ class EventsController < ApplicationController
     else
       flash[:error] = "Error updating event"
       redirect_to edit_event_path(e.id)
+    end
+  end
+
+  def show
+    begin
+      @event = Event.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:warning] = "Invalid id, event not found"
+      redirect_to events_path and return
     end
   end
 
