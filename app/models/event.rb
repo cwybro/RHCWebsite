@@ -25,7 +25,7 @@ class Event < ApplicationRecord
     end
 
     def time
-        self.datetime.strfrmt('%l.%M %p')
+        self.datetime.strftime('%l.%M %p')
     end
 
     private
