@@ -61,4 +61,14 @@ RSpec.describe Event, type: :model do
                          )
         expect(ev.readable_date).to eq("Mon, 25 December 2017")
     end
+
+    it "should correctly format the time of the event" do
+        ev = Event.create!(title: "5k chirstmas charity run",
+                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
+                         description: "Come and run the christmas 5K to raise money for the Madison
+                         Country Rural Health Council",
+                         address: "100 broad street, Hamilton, NY 13346",
+                         )
+        expect(ev.time).to eq(" 9.05 AM")
+    end
 end
