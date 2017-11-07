@@ -30,6 +30,20 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe "POST #create" do
+      it "returns http success and creates an event in the db" do
+          event_params = {title: "15k christmas charity run",
+                datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
+                description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
+                address: "Trudy Fitness Center, Hamilton"}
+          event = Event.new(event_params)
+          expect {
+              post :create, :params => {:event => event_params}
+          }.to change(Event, :count).by(1)
+          expect(response).to have_http_status(:redirect)
+      end
+  end
+
   describe "GET #show" do
     it "renders the show template with correct id" do
       event = Event.create(title: "5k christmas charity run",
