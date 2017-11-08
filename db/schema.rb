@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< d99abacf571e9b0324b22fba7b5eb5e163e9ba60
 ActiveRecord::Schema.define(version: 20171118152405) do
+=======
+ActiveRecord::Schema.define(version: 20171030190638) do
+>>>>>>> new location form, template form, #new controller method
 
   create_table "events", force: :cascade do |t|
     t.text "title"
@@ -31,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171118152405) do
     t.decimal "lng", precision: 15, scale: 10
   end
 
+<<<<<<< d99abacf571e9b0324b22fba7b5eb5e163e9ba60
   create_table "recaps", force: :cascade do |t|
     t.integer "attendance"
     t.text "description"
@@ -56,4 +61,6 @@ ActiveRecord::Schema.define(version: 20171118152405) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+=======
+>>>>>>> new location form, template form, #new controller method
 end
