@@ -1,0 +1,9 @@
+#main.container
+  =flash[:error]
+  %h3.header Create a New Event!
+
+  =form_for @event, :method => :post do |f|
+    =render 'event_form_template', form: f
+    .field
+      =f.submit
+      =link_to "Back to Events Page", events_path

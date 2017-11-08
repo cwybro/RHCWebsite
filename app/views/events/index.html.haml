@@ -1,0 +1,18 @@
+%h2 Upcoming Events
+
+- if (!flash[:notice].nil?)
+  %p.notice= flash[:notice]
+- if (!flash[:warning].nil?)
+  %p.warning= flash[:warning]
+
+- last_date = nil
+- @upcoming_events.each do |event|
+  - if last_date != event.date
+    - last_date = event.date
+    %h3.date= event.readable_date
+  %p.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
+
+%br
+%p= link_to "Add new event", new_event_url
+
+%p.home-link= link_to "Back to Home", root_url
