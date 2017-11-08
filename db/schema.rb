@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105182816) do
+ActiveRecord::Schema.define(version: 20171030190638) do
 
   create_table "events", force: :cascade do |t|
     t.text "title"
@@ -26,23 +26,6 @@ ActiveRecord::Schema.define(version: 20171105182816) do
     t.text "description"
     t.decimal "latitude", precision: 15, scale: 10
     t.decimal "longitude", precision: 15, scale: 10
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "location_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_taggings_on_event_id"
-    t.index ["location_id"], name: "index_taggings_on_location_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

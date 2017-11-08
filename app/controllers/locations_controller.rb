@@ -3,6 +3,10 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
 
+  def new
+      @location = Location.new
+  end
+
   def show
     begin
      @location = Location.find(params[:id])

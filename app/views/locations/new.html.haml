@@ -1,0 +1,9 @@
+#main.container
+  =flash[:error]
+  %h3.header Create a New Location!
+
+  =form_for @location, :method => :post do |f|
+    =render 'location_form_template', form: f
+    .field
+      =f.submit
+      =link_to "Back to Locations Page", locations_path
