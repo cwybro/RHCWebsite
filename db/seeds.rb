@@ -8,10 +8,16 @@
 
 Location.delete_all
 
-Location.create(title: "Triangle Park", latitude: 42.825102, longitude: -75.548332)
-Location.create(title: "Harry Lang Cross Country and Fitness Trails", description: "Hiking area", latitude: 42.812770, longitude: -75.537740)
-Location.create(title: "Cazenovia Recreation Center", latitude: 42.932394, longitude: -75.844110)
-Location.create(title: "Chittenango Falls State Park", description: "Winding gorge trails & a footbridge offer views of a 167-ft. waterfall, with areas for picnics.", latitude: 42.977701, longitude: -75.842604)
+Location.create(title: "Triangle Park",
+                address: "Triangle Park, Hamilton NY")
+Location.create(title: "Harry Lang Cross Country and Fitness Trails",
+                description: "Hiking area",
+                address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY")
+Location.create(title: "Cazenovia Recreation Center",
+                address: "22 Burton St, Cazenovia, NY 13035")
+Location.create(title: "Chittenango Falls State Park",
+                description: "Winding gorge trails & a footbridge offer views of a 167-ft. waterfall, with areas for picnics.",
+                address: "Chittenango Falls State Park, Cazenovia, NY 13035")
 
 Event.delete_all
 

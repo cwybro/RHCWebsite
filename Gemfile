@@ -32,6 +32,7 @@ gem 'haml'
 gem 'haml-rails'
 
 gem 'geocoder'
+gem 'geokit-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
