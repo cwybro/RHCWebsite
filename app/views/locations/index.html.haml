@@ -17,7 +17,7 @@
       %tr
         %td.title= link_to "#{loc.title}", location_path(loc)
         %td.description #{loc.description}
-        %td.details #{loc.short_address}
+        %td.details #{loc.address}
 
 %p= link_to "Add new location", new_location_url
 %p.home-link= link_to "Back to Home", root_url
