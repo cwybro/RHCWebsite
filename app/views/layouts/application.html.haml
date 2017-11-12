@@ -25,12 +25,12 @@
 
 
     - if (!flash[:success].nil?)
-      %p.notice= flash[:notice]
+      %p.notice.alert.alert-success= flash[:notice]
     - if (!flash[:warning].nil?)
-      %p.warning= flash[:warning]
+      %p.warning.alert.alert-warning= flash[:warning]
     - if (!flash[:danger].nil?)
-      %p.danger= flash[:danger]
+      %p.danger.alert.alert-danger= flash[:danger]
     - if (!flash[:info].nil?)
-      %p.info= flash[:info]
+      %p.info.alert.alert-info= flash[:info]
 
     .container= yield
