@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
   # validates :title, :latitude, :longitude, presence: true
-  validates :title, :address, presence: true
+  validates :title,:description,:address, presence: true
 
   # acts_as_mappable
   # acts_as_mappable :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
@@ -8,11 +8,12 @@ class Location < ApplicationRecord
   acts_as_mappable
   before_validation :geocode_address, :on => :create
 
-  private
+
   def geocode_address
-    geo=Geokit::Geocoders::MultiGeocoder.geocode (address)
+    geo=Geokit::Geocoders::GoogleGeocoder.geocode (address)
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.lat, self.lng = geo.lat,geo.lng if geo.success
+
   end
 
   # reverse_geocoded_by :latitude, :longitude
@@ -20,6 +21,7 @@ class Location < ApplicationRecord
 
   # attr_accessor :address
   #
+
   # def short_address
   #   if reverse_geocode
   #     parts = reverse_geocode.split(",").map { |x| x.strip }
