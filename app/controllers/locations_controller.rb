@@ -10,15 +10,13 @@ class LocationsController < ApplicationController
   def create
     p=Location.new(create_update_params)
     p.valid?
-        if p.save
-           logger.info("SAVED!")
-          flash[:notice] = "New location \"#{p.title}\" created"
-          redirect_to locations_path
-        else
-            logger.info("ERROR!")
-          flash[:warning]= "Error creating new location"
-          redirect_to new_location_path(p)
-        end
+    if p.save
+        flash[:notice] = "New location \"#{p.title}\" created"
+        redirect_to locations_path
+    else
+        flash[:warning]= "Error creating new location"
+        redirect_to new_location_path(p)
+    end
   end
 
 
