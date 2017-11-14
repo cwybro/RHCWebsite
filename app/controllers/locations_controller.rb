@@ -19,27 +19,32 @@ class LocationsController < ApplicationController
 
   def create
     p=Location.new(create_update_params)
-    if p.save
-      flash[:notice] = "New location \"#{p.title}\" created"
-      redirect_to locations_path
-    else
-      flash[:warning]= "Error creating new location"
-      redirect_to new_location_path(p)
+    p.valid?
+        if p.save
+           logger.info("SAVED!")
+          flash[:notice] = "New location \"#{p.title}\" created"
+          redirect_to locations_path
+        else
+            logger.info("ERROR!")
+          flash[:warning]= "Error creating new location"
+          redirect_to new_location_path(p)
+        end
+  end
+
+
+
+  def show
+    begin
+      @location = Location.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:warning] = "Invalid id, location not found"
+      redirect_to locations_path and return
     end
   end
 
   private
   def create_update_params
-    params.require(:location).permit(:title, :description, :address)
-  end
-
-  def show
-    begin
-     @location = Location.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:warning] = "Invalid id, location not found"
-      redirect_to locations_path and return
-    end
+    params.require(:location).permit(:title,:description,:address)
   end
 end
 
