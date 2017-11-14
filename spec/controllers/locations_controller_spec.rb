@@ -45,7 +45,7 @@ RSpec.describe LocationsController, type: :controller do
               post :create, :params => {:location => location_params}
           }.to change(Location, :count).by(1)
           expect(response).to have_http_status(:redirect)
-          expect(response).to redirect_to(locations_path)
+          expect(response).to redirect_to(locations_path) 
       end
   end
 
