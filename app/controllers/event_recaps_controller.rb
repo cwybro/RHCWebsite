@@ -3,6 +3,7 @@ class EventRecapsController < ApplicationController
 
   # GET /event_recaps
   # GET /event_recaps.json
+  # TODO: Don't actually need this
   def index
     @event_recaps = EventRecap.all
   end
@@ -14,6 +15,7 @@ class EventRecapsController < ApplicationController
 
   # GET /event_recaps/new
   def new
+    @event = Event.find(params[:event_id])
     @event_recap = EventRecap.new
   end
 
@@ -24,6 +26,7 @@ class EventRecapsController < ApplicationController
   # POST /event_recaps
   # POST /event_recaps.json
   def create
+    @event = Event.find(params[:event_id])
     @event_recap = EventRecap.new(event_recap_params)
 
     respond_to do |format|

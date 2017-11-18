@@ -1,9 +1,24 @@
 %h2.header #{@event.title}
 
-%h3 #{@event.description}
-%h3 #{@event.readable_date}
-%h3 #{@event.address}
+.container
 
-%p= link_to "Edit event", edit_event_url(@event)
+    %h5 Description of event:
+    %p #{@event.description}
+    %h5 Time and date:
+    %p #{@event.readable_date}
+    %h5 Location of event
+    %p #{@event.address}
+
+    %p= link_to "Edit event", edit_event_url(@event)
+
+    - if !@event.event_recap.nil?
+        %h5 Quick recap of the event
+        %h5 Attendance
+        %p #{@event.event_recap.attendance}
+        %h5 General comments
+        %p #{@event.event_recap.description}
+        =link_to 'Edit event summary', edit_event_event_recap_url(@event)
+    - else
+        =link_to 'Submit a new event summary', new_event_event_recap_url(@event)
 
 =link_to 'Back to list of events',events_path
