@@ -1,6 +1,7 @@
 require 'date'
 
 class Event < ApplicationRecord
+    has_one :event_recap
     validates :title, :description, :address, :datetime, presence: true
     validate :timeliness_of_datetime
 
