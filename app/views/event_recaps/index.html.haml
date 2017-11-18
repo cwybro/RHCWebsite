@@ -1,0 +1,23 @@
+%h1 Listing event_recaps
+
+%table
+  %thead
+    %tr
+      %th Attendance
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @event_recaps.each do |event_recap|
+      %tr
+        %td= event_recap.attendance
+        %td= event_recap.description
+        %td= link_to 'Show', event_recap
+        %td= link_to 'Edit', edit_event_recap_path(event_recap)
+        %td= link_to 'Destroy', event_recap, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Event recap', new_event_recap_path
