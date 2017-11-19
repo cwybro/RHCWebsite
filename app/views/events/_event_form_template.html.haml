@@ -13,3 +13,7 @@
 .field
   = form.label :datetime, "Date and Time"
   = form.datetime_field :datetime, required: :true
+
+.field
+  = form.label :image, "Event Image"
+  = form.file_field :image, required: :false
