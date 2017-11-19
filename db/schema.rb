@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD:rhc/db/schema.rb
-ActiveRecord::Schema.define(version: 20171105182816) do
-=======
 ActiveRecord::Schema.define(version: 20171116205544) do
->>>>>>> 1b54b251edb5a25ccf51daf86775da4ec7cb6727:db/schema.rb
 
   create_table "events", force: :cascade do |t|
     t.text "title"
@@ -50,23 +46,6 @@ ActiveRecord::Schema.define(version: 20171116205544) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "location_id"
-    t.integer "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_taggings_on_event_id"
-    t.index ["location_id"], name: "index_taggings_on_location_id"
-    t.index ["tag_id"], name: "index_taggings_on_tag_id"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
