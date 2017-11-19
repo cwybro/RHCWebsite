@@ -38,7 +38,7 @@ Event.create(title: "10k around campus",
             description: "Come run with us!",
             address: "Colgate University")
 
-EventRecap.delete_all
+Recap.delete_all
 
-Event.first.event_recap = EventRecap.new(attendance: 500, description: "It was hugely successful!")
-Event.last.event_recap = EventRecap.new(attendance: 10, description: "It was fun!")
+Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
+Event.last.recap = Recap.new(attendance: 10, description: "It was fun!")

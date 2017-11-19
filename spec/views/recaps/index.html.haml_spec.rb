@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe "event_recaps/index", type: :view do
+RSpec.describe "recaps/index", type: :view do
   before(:each) do
-    assign(:event_recaps, [
-      EventRecap.create!(
+    assign(:recaps, [
+      Recap.create!(
         :attendance => 2,
         :description => "MyText"
       ),
-      EventRecap.create!(
+      Recap.create!(
         :attendance => 2,
         :description => "MyText"
       )

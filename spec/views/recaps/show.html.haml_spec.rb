@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "event_recaps/show", type: :view do
+RSpec.describe "recaps/show", type: :view do
   before(:each) do
-    @event_recap = assign(:event_recap, EventRecap.create!(
+    @event_recap = assign(:recap, Recap.create!(
       :attendance => 2,
       :description => "MyText"
     ))
