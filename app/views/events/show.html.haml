@@ -1,4 +1,7 @@
-%h2.header #{@event.title}
+.event-page
+  -if event.image.present?
+    .event-image= image_tag(event.image.url(:header), :alt => %Q"#{event.title} header image")
+  %h2.header #{@event.title}
 
 .container
 
