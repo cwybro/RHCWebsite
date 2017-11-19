@@ -1,5 +1,11 @@
 %h2.header Locations
-
+=form_tag locations_path, :method => :get do
+  %span.filter
+    =label_tag "distance_filter", "Within"
+    =number_field_tag "distance_filter", "#{@distance}"
+    =label_tag "location_filter", "miles of"
+    =text_field_tag "location_filter", "#{@location}"
+    =submit_tag "Refine the list of locations"
 %table.table
   %thead
     %tr
