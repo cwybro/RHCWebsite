@@ -1,0 +1,48 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    - if @title
+      %title= @title + " - Madison Country RHC"
+    - else
+      %title Madison County RHC
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar-expand-lg.navbar.navbar.container-fluid.navbar-light.bg-light
+      %a.navbar-brand{:href => "/"} Madison County RHC
+      %ul.navbar-nav.mr-auto.ml-2.justify-content-center
+        %li.nav-item
+          %form.form-inline.my-2.my-lg-0
+            %input.form-control.search-bar.mr-sm-2{type: :search, placeholder: :Search}
+            %button.btn.btn-outline-success.my-2.my-sm.0{type: :submit} Search
+        %li.nav-item.my-2
+          =link_to "Events", events_path, class: "nav-link"
+        %li.nav-item.my-2
+          =link_to "Locations", locations_path, class: "nav-link"
+        - if user_signed_in?
+          %li.nav-item.my-2
+            =link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
+        - else
+          %li.nav-item.my-2
+            =link_to "Login", new_user_session_path, class: "nav-link"
+          %li.nav-item.my-2
+            =link_to "Sign up", new_user_registration_path, class: "nav-link"
+
+
+
+    - if (!flash[:success].nil?)
+      %p.notice.alert.alert-success= flash[:success]
+    - if (!flash[:warning].nil?)
+      %p.warning.alert.alert-warning= flash[:warning]
+    - if (!flash[:danger].nil?)
+      %p.danger.alert.alert-danger= flash[:danger]
+    - if (!flash[:info].nil?)
+      %p.info.alert.alert-info= flash[:info]
+    - if (!flash[:notice].nil?)
+      %p.notice.alert.alert-success= flash[:notice]
+    - if (!flash[:alert].nil?)
+      %p.notice.alert.alert-warning= flash[:alert]
+
+    .container= yield

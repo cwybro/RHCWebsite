@@ -1,0 +1,8 @@
+#main
+  %h2.header Create a New Event!
+
+  =form_for @event, :method => :put do |f|
+    =render 'event_form_template', form: f
+    .field
+      =f.submit "Update event details"
+      =link_to "Back to Event", event_path(@event.id)

@@ -1,0 +1,9 @@
+%h2.header #{@event.title}
+
+%h3 #{@event.description}
+%h3 #{@event.readable_date}
+%h3 #{@event.address}
+
+%p= link_to "Edit event", edit_event_url(@event)
+
+=link_to 'Back to list of events',events_path
