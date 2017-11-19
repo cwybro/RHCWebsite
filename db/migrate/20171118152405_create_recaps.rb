@@ -1,6 +1,6 @@
-class CreateEventRecaps < ActiveRecord::Migration[5.1]
+class CreateRecaps < ActiveRecord::Migration[5.1]
   def change
-    create_table :event_recaps do |t|
+    create_table :recaps do |t|
       t.integer :attendance
       t.text :description
       t.integer :event_id

@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171118152405) do
 
-  create_table "event_recaps", force: :cascade do |t|
-    t.integer "attendance"
-    t.text "description"
-    t.integer "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.text "title"
     t.text "description"
@@ -37,6 +29,14 @@ ActiveRecord::Schema.define(version: 20171118152405) do
     t.text "address"
     t.decimal "lat", precision: 15, scale: 10
     t.decimal "lng", precision: 15, scale: 10
+  end
+
+  create_table "recaps", force: :cascade do |t|
+    t.integer "attendance"
+    t.text "description"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

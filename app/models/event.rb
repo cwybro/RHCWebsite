@@ -1,7 +1,7 @@
 require 'date'
 
 class Event < ApplicationRecord
-    has_one :event_recap, :dependent => :destroy
+    has_one :recap, :dependent => :destroy
     validates :title, :description, :address, :datetime, presence: true
     validate :timeliness_of_datetime
 

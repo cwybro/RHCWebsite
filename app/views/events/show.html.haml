@@ -11,14 +11,14 @@
 
     %p= link_to "Edit event", edit_event_url(@event)
 
-    - if !@event.event_recap.nil?
+    - if !@event.recap.nil?
         %h5 Quick recap of the event
         %h5 Attendance
-        %p #{@event.event_recap.attendance}
+        %p #{@event.recap.attendance}
         %h5 General comments
-        %p #{@event.event_recap.description}
-        =link_to 'Edit event summary', edit_event_event_recap_url(@event)
+        %p #{@event.recap.description}
+        =link_to 'Edit event summary', edit_event_recap_url(@event)
     - else
-        =link_to 'Submit a new event summary', new_event_event_recap_url(@event)
+        =link_to 'Submit a new event summary', new_event_recap_url(@event)
 
 =link_to 'Back to list of events',events_url
