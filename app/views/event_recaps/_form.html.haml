@@ -1,4 +1,4 @@
-= form_for @event_recap do |f|
+= form_for [@event, @event_recap] do |f|
   - if @event_recap.errors.any?
     #error_explanation
       %h2= "#{pluralize(@event_recap.errors.count, "error")} prohibited this event_recap from being saved:"
