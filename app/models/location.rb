@@ -12,15 +12,15 @@ class Location < ApplicationRecord
     if location.nil? or location[0].nil? or location[1].nil?
       return Float::INFINITY
     end
-    if latitude.nil? or longitude.nil?
+    if lat.nil? or lng.nil?
       return Float::INFINITY
     end
 
     lat2 = to_rad location[0]
     lon2 = to_rad location[1]
 
-    lat1 = to_rad latitude
-    lon1 = to_rad longitude
+    lat1 = to_rad lat
+    lon1 = to_rad lng
 
     r = 3959
     dlon = lon2 - lon1
@@ -32,7 +32,7 @@ end
 
 def distance_within?(location, distance)
   if location.is_a? String
-    location = geocode(location)
+    location = geocode_filter_location(location)
   end
   d = distance_from(location)
   if d.nil?
