@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def create
     p=Event.new(create_update_params)
     if p.save
-      flash[:notice] = "New event \"#{p.title}\" created"
+      flash[:success] = "New event \"#{p.title}\" created"
       redirect_to events_path
     else
       flash[:warning]= "Error creating new event"
@@ -29,10 +29,10 @@ class EventsController < ApplicationController
     e = Event.find(id)
     e.update(create_update_params)
     if e.save
-      flash[:notice] = "Event\"#{e.title}\" updated"
+      flash[:success] = "Event\"#{e.title}\" updated"
       redirect_to event_path(e.id)
     else
-      flash[:error] = "Error updating event"
+      flash[:warning] = "Error updating event"
       redirect_to edit_event_path(e.id)
     end
   end

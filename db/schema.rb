@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110183531) do
+ActiveRecord::Schema.define(version: 20171120161023) do
 
   create_table "events", force: :cascade do |t|
     t.text "title"
@@ -29,6 +29,40 @@ ActiveRecord::Schema.define(version: 20171110183531) do
     t.text "address"
     t.decimal "lat", precision: 15, scale: 10
     t.decimal "lng", precision: 15, scale: 10
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "location_id"
+    t.integer "event_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_taggings_on_event_id"
+    t.index ["location_id"], name: "index_taggings_on_location_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
