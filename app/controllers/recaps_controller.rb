@@ -1,5 +1,6 @@
 class RecapsController < ApplicationController
-  before_action :set_recap, only: [:show, :edit, :update, :destroy]
+  before_action :set_event 
+  before_action :set_recap, only: [:edit, :update]
 
   # TODO: Don't actually need this
   # def index
@@ -11,40 +12,32 @@ class RecapsController < ApplicationController
   # end
 
   def new
-    @event = Event.find(params[:event_id])
     @recap = Recap.new
   end
 
   def edit
-    @event = Event.find(params[:event_id])
-    @recap = @event.recap
   end
 
   def create
-    @event = Event.find(params[:event_id])
-    @recap = Recap.new(recap_params)
-
-    @event.recap = @recap
-
-    if @recap.save
+    begin
+      @recap = Recap.new(recap_params)
+      @event.recap = @recap
       flash[:notice] = 'Event recap was successfully created!'
       redirect_to(event_path(@event))
-    else
-      flash[:alert] = 'Error encountered when creating event recap'
+    rescue
+      flash[:warning] = 'Error encountered when creating event recap'
       redirect_to(new_event_recap_path(@event))
     end
   end
 
   def update
-    @event = Event.find(params[:event_id])
-
     if @recap.update(recap_params)
       flash[:notice] = 'Event recap was successfully updated!'
       @event.recap = @recap
       redirect_to(event_path(@event))
     else
-      flash[:alert] = 'Error encountered when creating event recap'
-      redirect_to(new_event_recap_path(@event))
+      flash[:warning] = 'Error encountered when creating event recap'
+      redirect_to(edit_event_recap_path(@event))
     end
   end
 
@@ -58,9 +51,17 @@ class RecapsController < ApplicationController
   # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      begin
+        @event = Event.find(params[:event_id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:warning] = "Invalid id, event not found"
+        redirect_to events_path and return
+      end
+    end
+
     def set_recap
-      @recap = Event.find(params[:event_id]).recap
+      @recap = @event.recap
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
