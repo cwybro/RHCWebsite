@@ -2,6 +2,9 @@ class Location < ApplicationRecord
   # validates :title, :latitude, :longitude, presence: true
   validates :title, :address, presence: true
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+  
   # acts_as_mappable
   # acts_as_mappable :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
 
