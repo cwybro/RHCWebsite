@@ -26,17 +26,18 @@ end
 
 private
   def filter_locations(view_prefs)
-    @locations=Location.all
-    logger.debug(view_prefs.inspect)
     distance = view_prefs["distance_filter"].to_i
     location = view_prefs["location_filter"].to_s.strip
-
-    if location != "" && distance > 0
-      lat, lon = geocode_filter_location(location)
-      logger.debug("Location filt #{location}, #{lat}, #{lon}")
-      if !lat.nil? && !lon.nil?
-        @locations = @locations.select {|l| l.distance_within?([lat,lon], distance)}
+    if(location != "" && distance > 0)
+      location=geocode_filter_location(location)
+      begin
+        @locations=Location.within(distance, :origin => location)
+      rescue Geokit::Geocoders::GeocodeError
+        flash[:warning]= "Geocode Error. Try again."
+        redirect_to(locations_path(view_prefs)) and return
       end
+    else
+      @locations=Location.all
     end
     @locations
   end

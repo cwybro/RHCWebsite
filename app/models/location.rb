@@ -8,39 +8,6 @@ class Location < ApplicationRecord
   acts_as_mappable
   before_validation :geocode_address, :on => :create
 
-  def distance_from(location)
-    if location.nil? or location[0].nil? or location[1].nil?
-      return Float::INFINITY
-    end
-    if lat.nil? or lng.nil?
-      return Float::INFINITY
-    end
-
-    lat2 = to_rad location[0]
-    lon2 = to_rad location[1]
-
-    lat1 = to_rad lat
-    lon1 = to_rad lng
-
-    r = 3959
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = (Math.sin(dlat/2.0))**2.0+Math.cos(lat1) * Math.cos(lat2) * (Math.sin(dlon/2.0))**2
-    c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-    d = r * c
-end
-
-def distance_within?(location, distance)
-  if location.is_a? String
-    location = geocode_filter_location(location)
-  end
-  d = distance_from(location)
-  if d.nil?
-    false
-  else
-     d <= distance
-  end
-end
 
 private
   def geocode_address
@@ -49,9 +16,6 @@ private
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
 
-  def to_rad(deg)
-    deg/180.0 * Math::PI
-  end
 
 
 
