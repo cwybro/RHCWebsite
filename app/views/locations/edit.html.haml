@@ -1,0 +1,8 @@
+#main
+  %h2.header Create a New Location!
+
+  =form_for @location, :method => :put do |f|
+    =render 'location_form_template', form: f
+    .field
+      =f.submit "Update location details"
+      =link_to "Back to Location", location_path(@location.id)
