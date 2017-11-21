@@ -8,12 +8,16 @@ class Location < ApplicationRecord
   acts_as_mappable
   before_validation :geocode_address, :on => :create
 
-  private
+
+private
   def geocode_address
     geo=Geokit::Geocoders::MultiGeocoder.geocode (address)
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.lat, self.lng = geo.lat,geo.lng if geo.success
   end
+
+
+
 
   # reverse_geocoded_by :latitude, :longitude
   # after_validation :reverse_geocode  # auto-fetch address

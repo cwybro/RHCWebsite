@@ -20,3 +20,5 @@ RSpec.describe Location, type: :model do
     expect(desc.valid?).to eq false
   end
 end
+
+  
