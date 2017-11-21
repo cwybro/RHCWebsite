@@ -6,7 +6,7 @@ class Location < ApplicationRecord
   # acts_as_mappable :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
 
   acts_as_mappable
-  before_validation :geocode_address, :on => :create
+  before_validation :geocode_address, :on => [:create, :save]
 
 
 private

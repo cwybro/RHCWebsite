@@ -15,7 +15,8 @@ module LocationsHelper
 
     def geocode_filter_location(location)
         geo = Geokit::Geocoders::MultiGeocoder.geocode location
-        return [nil, nil] unless geo.success
-        return [geo.lat, geo.lng] if geo.success
+        return [geo.lat, geo.lng] if geo.success else [nil, nil]
     end
+
+
 end
