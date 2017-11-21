@@ -49,5 +49,39 @@ RSpec.describe LocationsController, type: :controller do
       end
   end
 
+  describe "GET #edit" do
+    it "renders the edit template with correct id" do
+      location = Location.create(title: "Triangle Park",
+                                description: "Park fit for families",
+                                address: "Triangle Park, Hamilton NY")
+      expect(Location).to receive(:find).with("1") {location}
+      get :edit, :params => {:id => 1}
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe "PUT #update" do
+    it "returns http redirect and modifies a location in the db" do
+        location = Location.create(title: "Triangle Park",
+                                  description: "Park fit for families",
+                                  address: "Triangle Park, Hamilton NY")
+        put :update, :params => {:id => location.id, :location => {:title => "New Triangle Park"}}
+        location.reload
+        expect(location.title).to eq("New Triangle Park")
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(location_url(location))
+    end
+
+    it "returns to the edit page after failure to edit location" do
+        location = Location.create(title: "Triangle Park",
+                                  description: "Park fit for families",
+                                  address: "Triangle Park, Hamilton NY")
+        put :update, :params => {:id => location.id, :location => {:title => ""}}
+        location.reload
+        expect(location.title).to eq("Triangle Park")
+        expect(response).to redirect_to(edit_location_url(location))
+    end
+  end
 
 end
