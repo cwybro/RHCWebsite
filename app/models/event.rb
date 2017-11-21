@@ -1,8 +1,18 @@
 require 'date'
 
 class Event < ApplicationRecord
+    has_one :recap, :dependent => :destroy
     validates :title, :description, :address, :datetime, presence: true
     validate :timeliness_of_datetime
+
+    has_attached_file :image,
+    :styles=> {:header => "800x400#", :thumb => "100x100#" }
+    # no default, use CSS gradient instead.
+
+    validates_attachment :image,
+        :content_type => {:content_type => ["image/jpeg", "image/png",]}
+
+
 
     def date
         self.datetime.to_date

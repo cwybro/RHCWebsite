@@ -1,6 +1,16 @@
 class LocationsController < ApplicationController
+  include LocationsHelper
   def index
-    @locations = Location.all
+    view_prefs, do_redirect= update_settings(params, session)
+    if do_redirect
+      flash.keep
+      redirect_to locations_path(view_prefs) and return
+    end
+    @locations = filter_locations(view_prefs)
+
+    @distance = view_prefs["distance_filter"]
+    @location = view_prefs["location_filter"].to_s.strip
+
   end
 
   def new
@@ -32,6 +42,45 @@ class LocationsController < ApplicationController
 
   private
   def create_update_params
-    params.require(:location).permit(:title,:description,:address)
+    params.require(:location).permit(:title, :description, :address, :image)
   end
 end
+
+
+private
+  def filter_locations(view_prefs)
+    distance = view_prefs["distance_filter"].to_i
+    location = view_prefs["location_filter"].to_s.strip
+    if(location != "" && distance > 0)
+      location=geocode_filter_location(location)
+      begin
+        if location == [nil, nil]  # Response on a Timeout error.
+          raise Geokit::Geocoders::GeocodeError
+        end
+        @locations=Location.within(distance, :origin => location)  # Can also throw error.
+      rescue Geokit::Geocoders::GeocodeError
+        flash[:warning]= "Geocode Error. Try again."
+        redirect_to(locations_path(view_prefs)) and return
+      end
+    else
+      @locations=Location.all
+    end
+    @locations
+  end
+
+  def update_settings(parms, sess)
+    preferences = sess[:preferences] || Hash.new
+    should_redirect = false
+    { "distance_filter" => "","location_filter" => ""}.each do |parm, default|
+      parmval = parms[parm]
+      if parmval.nil?  # not currently set; look at session
+        parmval = preferences[parm] || default
+        should_redirect = true
+      elsif parmval != preferences[parm]  # is set, but is it different?
+        should_redirect = true
+      end
+      preferences[parm] = parmval
+    end
+    sess[:preferences] = preferences
+    return preferences, should_redirect
+  end

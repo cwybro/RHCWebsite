@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Location, type: :model do
-  it "should be valid if title AND address are set" do
-    l = Location.new(title: "Test place", address: "13 Oak Drive, Hamilton NY")
+  it "should be valid if title, address AND description are set" do
+    l = Location.new(title: "Test place", address: "13 Oak Drive, Hamilton NY", description: "Reccomended by 9 out of 10 dentists.")
     allow(l).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
     expect(l.valid?).to eq true
   end

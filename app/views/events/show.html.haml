@@ -1,9 +1,26 @@
-%h2.header #{@event.title}
 
-%h3 #{@event.description}
-%h3 #{@event.readable_date}
-%h3 #{@event.address}
+.container
+    -if @event.image.present?
+        .event-image= image_tag(@event.image.url(:header), :alt => %Q"#{@event.title} header image")
+    %h2.header #{@event.title}
 
-%p= link_to "Edit event", edit_event_url(@event)
+    %h5 Description of event:
+    %p #{@event.description}
+    %h5 Time and date:
+    %p #{@event.readable_date}
+    %h5 Location of event
+    %p #{@event.address}
 
-=link_to 'Back to list of events',events_path
+    %p= link_to "Edit event", edit_event_url(@event)
+
+    - if !@event.recap.nil?
+        %h5 Quick recap of the event
+        %h5 Attendance
+        %p #{@event.recap.attendance}
+        %h5 General comments
+        %p #{@event.recap.description}
+        =link_to 'Edit event summary', edit_event_recap_url(@event)
+    - else
+        =link_to 'Submit a new event summary', new_event_recap_url(@event)
+
+=link_to 'Back to list of events',events_url

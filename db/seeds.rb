@@ -37,3 +37,8 @@ Event.create(title: "10k around campus",
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
             description: "Come run with us!",
             address: "Colgate University")
+
+Recap.delete_all
+
+Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
+Event.last.recap = Recap.new(attendance: 10, description: "It was fun!")

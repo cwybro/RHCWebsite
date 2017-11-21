@@ -5,6 +5,8 @@
   - if last_date != event.date
     - last_date = event.date
     %h3.date= event.readable_date
+  -if event.image.present?
+    .event-image= image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image")
   %p.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
 
 %br
