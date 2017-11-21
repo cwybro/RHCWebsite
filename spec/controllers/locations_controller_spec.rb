@@ -36,7 +36,7 @@ RSpec.describe LocationsController, type: :controller do
   end
 
   describe "POST #create" do
-      it "returns http success and creates an location in the db" do
+      it "returns http success and creates a location in the db" do
           location_params = {title: "Persson Steps",
                 description: "Many steps. Good workout route to classes",
                 address: "13 Oak Dr. Hamilton, NY"}

@@ -1,9 +1,9 @@
 class Location < ApplicationRecord
   # validates :title, :latitude, :longitude, presence: true
-  validates :title,:description,:address, presence: true
+  validates :title, :description, :address, presence: true
 
   has_attached_file :image,
-  :styles=> {:header => "800x400>", :thumb => "100x100>" }
+  :styles=> {:header => "800x400#", :thumb => "100x100#" }
   # no default, use CSS gradient instead.
 
   validates_attachment :image,
