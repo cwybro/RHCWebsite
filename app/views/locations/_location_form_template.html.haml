@@ -9,3 +9,7 @@
 .field
   =form.label :address, "Address"
   =form.text_field :address, required: :true
+
+.field
+  = form.label :image, "Location Image"
+  = form.file_field :image, required: :false

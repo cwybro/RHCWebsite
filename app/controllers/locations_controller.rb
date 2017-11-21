@@ -42,7 +42,7 @@ class LocationsController < ApplicationController
 
   private
   def create_update_params
-    params.require(:location).permit(:title,:description,:address)
+    params.require(:location).permit(:title, :description, :address, :image)
   end
 end
 
