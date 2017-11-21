@@ -54,7 +54,10 @@ private
     if(location != "" && distance > 0)
       location=geocode_filter_location(location)
       begin
-        @locations=Location.within(distance, :origin => location)
+        if location == [nil, nil]  # Response on a Timeout error.
+          raise Geokit::Geocoders::GeocodeError
+        end
+        @locations=Location.within(distance, :origin => location)  # Can also throw error.
       rescue Geokit::Geocoders::GeocodeError
         flash[:warning]= "Geocode Error. Try again."
         redirect_to(locations_path(view_prefs)) and return

@@ -31,7 +31,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "returns http success and creates an event in the db" do
+    it "return to the create new event page upon invalid information" do
         event_params = {title: "15k christmas charity run",
               datetime: "bad input",  # require 'date'
               description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
@@ -44,7 +44,7 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to redirect_to(new_event_path)
     end
 
-    it "return to the create new event page upon invalid information" do
+    it "returns http success and creates an event in the db" do
         event_params = {title: "15k christmas charity run",
               datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
               description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
