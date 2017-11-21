@@ -1,15 +1,15 @@
-.field
+.field.form-group
   =form.label :title, "Title"
-  =form.text_field :title, required: :true
+  =form.text_field :title, required: :true, class: 'form-control'
 
-.field
+.field.form-group
   =form.label :description, "Description"
-  =form.text_field :description, required: :true
+  =form.text_field :description, required: :true, class: 'form-control'
 
-.field
+.field.form-group
   =form.label :address, "Address"
-  =form.text_field :address, required: :true
+  =form.text_field :address, required: :true, class: 'form-control'
 
-.field
+.field.form-group
   = form.label :image, "Location Image"
   = form.file_field :image, required: :false
