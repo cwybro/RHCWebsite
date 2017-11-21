@@ -40,6 +40,24 @@ class LocationsController < ApplicationController
     end
   end
 
+  def edit
+      id = params[:id]
+      @location = Location.find(id)
+  end
+
+  def update
+    id = params[:id]
+    loc = Location.find(id)
+    loc.update(create_update_params)
+    if loc.save
+      flash[:success] = "Location \"#{loc.title}\" updated"
+      redirect_to location_path(loc.id)
+    else
+      flash[:error] = "Error updating location"
+      redirect_to edit_location_path(loc.id)
+    end
+  end
+
   private
   def create_update_params
     params.require(:location).permit(:title, :description, :address, :image)
