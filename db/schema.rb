@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119012029) do
+ActiveRecord::Schema.define(version: 20171122002236) do
 
   create_table "events", force: :cascade do |t|
     t.text "title"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171119012029) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.decimal "rating", precision: 10, scale: 2
   end
 
   create_table "recaps", force: :cascade do |t|

@@ -12,7 +12,8 @@ Location.create(title: "Triangle Park",
                 address: "Triangle Park, Hamilton NY")
 Location.create(title: "Harry Lang Cross Country and Fitness Trails",
                 description: "Hiking area",
-                address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY")
+                address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY",
+                rating: 5)
 Location.create(title: "Cazenovia Recreation Center",
                 address: "22 Burton St, Cazenovia, NY 13035")
 Location.create(title: "Chittenango Falls State Park",

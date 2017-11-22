@@ -6,6 +6,9 @@
 %h4 #{@location.address}
 %h5 Latitude: #{@location.lat}
 %h5 Longitude: #{@location.lng}
+%h5 #{@location.rating} upvotes
+%button upvote
+=#button_to( "up vote", :action => "edit", :controller => "locations", :id => @location.id)
 
 
 =link_to 'Back to locations', locations_path
