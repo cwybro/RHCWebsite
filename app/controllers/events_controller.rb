@@ -24,16 +24,15 @@ class EventsController < ApplicationController
     id = params[:id]
     @event = Event.find(id)
   end
-
   def update
     id = params[:id]
     e = Event.find(id)
     e.update(create_update_params)
     if e.save
-      flash[:success] = "Event\"#{e.title}\" updated"
+      flash[:success] = "Event \"#{e.title}\" updated"
       redirect_to event_path(e.id)
     else
-      flash[:warning] = "Error updating event"
+      flash[:error] = "Error updating event"
       redirect_to edit_event_path(e.id)
     end
   end
@@ -49,6 +48,6 @@ class EventsController < ApplicationController
 
   private
   def create_update_params
-    params.require(:event).permit(:title, :description, :address, :datetime)
+    params.require(:event).permit(:title, :description, :address, :datetime, :image)
   end
 end

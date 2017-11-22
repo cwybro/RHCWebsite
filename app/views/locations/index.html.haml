@@ -1,8 +1,15 @@
 %h2.header Locations
-
+=form_tag locations_path, :method => :get do
+  %span.filter
+    =label_tag "distance_filter", "Within"
+    =number_field_tag "distance_filter", "#{@distance}"
+    =label_tag "location_filter", "miles of"
+    =text_field_tag "location_filter", "#{@location}"
+    =submit_tag "Refine the list of locations"
 %table.table
   %thead
     %tr
+      %th Image
       %th Title
       %th Description
       %th Address
@@ -10,8 +17,11 @@
   %tbody
     -@locations.each do |loc|
       %tr
+        -if loc.image.present?
+          %td.image= image_tag(loc.image.url(:thumb), :alt => %Q"Picture of #{loc.title}")
         %td.title= link_to "#{loc.title}", location_path(loc)
         %td.description #{loc.description}
         %td.details #{loc.address}
 
+%p= link_to "Add new location", new_location_url
 %p.home-link= link_to "Back to Home", root_url

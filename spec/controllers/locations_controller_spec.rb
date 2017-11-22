@@ -5,7 +5,7 @@ RSpec.describe LocationsController, type: :controller do
   describe "GET #index" do
     it "returns http success" do
       get :index
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(302)
     end
   end
 
@@ -14,6 +14,7 @@ RSpec.describe LocationsController, type: :controller do
       location = Location.create(title: "Triangle Park",
                                 description: "Park fit for families",
                                 address: "Triangle Park, Hamilton NY")
+
       expect(Location).to receive(:find).with("1") {location}
       get :show, :params => { :id => 1}
       expect(response).to have_http_status(:success)
@@ -26,5 +27,27 @@ RSpec.describe LocationsController, type: :controller do
       expect(response).to redirect_to(locations_path)
     end
   end
+
+  describe "GET #new" do
+    it "returns http success" do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "POST #create" do
+      it "returns http success and creates a location in the db" do
+          location_params = {title: "Persson Steps",
+                description: "Many steps. Good workout route to classes",
+                address: "13 Oak Dr. Hamilton, NY"}
+          location = Location.new(location_params)
+          expect {
+              post :create, :params => {:location => location_params}
+          }.to change(Location, :count).by(1)
+          expect(response).to have_http_status(:redirect)
+          expect(response).to redirect_to(locations_path)
+      end
+  end
+
 
 end
