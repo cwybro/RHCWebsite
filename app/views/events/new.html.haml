@@ -1,8 +1,8 @@
 #main
   %h2.header Create a New Event!
 
-  =form_for @event, :method => :post do |f|
+  =form_for @event, class: 'form', :method => :post do |f|
     =render 'event_form_template', form: f
     .field
-      =f.submit
-      =link_to "Back to Events Page", events_path
+      =f.submit "Create Event", class: 'btn btn-primary'
+      =link_to "Back to Events Page", events_path, class: 'btn btn-secondary'

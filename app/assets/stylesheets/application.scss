@@ -18,3 +18,112 @@
 // For more information about the scss syntax and the sass language, go to http://sass-lang.com/guide
 // I think it's fine to use vanilla CSS in an scss file, but there are many advantages to using SCSS
 // over regular CSS
+
+// Colors taken from "Outdoor Fun" theme on http://color.adobe.com
+$primary-color: #A33804;
+$secondary-color: #DCA212;
+$tertiary-color: #C6C962;
+$quarternary-color: #94B92B;
+$quinary-color: #90BDA8;
+$bg-light: #FAFAFA;
+$bg-dark: #AFAFAF;
+
+$title-color: $quarternary-color;
+$subtitle-color: $secondary-color;
+$emphasis-color: $tertiary-color;
+$object-color: $tertiary-color;
+$highlight-color: $quinary-color;
+$paragraph-color: #666666;
+$alternate-color: $primary-color;
+
+
+// Text Styling
+h1, h2 {
+    color: $title-color;
+    padding: 30px 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+h3 {
+    color: $subtitle-color;
+    margin-bottom: 20px;
+}
+
+p {
+    color: $paragraph-color;
+}
+
+.subtitle {
+    color: $subtitle-color;
+}
+
+body {
+    background-color: $bg-light;
+}
+// Other styling
+.container.content-wrapper {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: $title-color 2px solid;
+    border-right: $title-color 2px solid;
+    border-bottom: $title-color 2px solid;
+    margin-bottom: 20px;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 800px;
+}
+
+.btn-primary {
+    @extend .btn-primary;
+    background-color: $title-color;
+    border-color: $title-color;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: $title-color;
+    border-color: $title-color;
+}
+
+.btn-primary:active {
+    background-color: $title-color;
+    color: white;
+}
+
+
+
+
+.btn-secondary {
+    @extend .btn-secondary;
+    background-color: $highlight-color;
+    border-color: $highlight-color;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: $highlight-color;
+    border-color: $highlight-color;
+}
+
+.btn-secondary:active {
+    background-color: $highlight-color;
+    color: white;
+}
+
+
+.filter-form {
+    margin: 30px 30px;
+}
+
+.filter .form-control {
+    display: inline;
+}
+
+.filter .filter-submit {
+    margin-top: 25px;
+}
