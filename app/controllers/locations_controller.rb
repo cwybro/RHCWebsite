@@ -31,8 +31,19 @@ class LocationsController < ApplicationController
   def show
     begin
       @location = Location.find(params[:id])
+      @admin = current_user.try(:admin?)
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, location not found"
+      redirect_to locations_path and return
+    end
+  end
+
+  def edit
+    if current_user.try(:admin?)
+      id = params[:id]
+      @location = Location.find(id)
+    else
+      flash[:warning] = "Invalid permissions"
       redirect_to locations_path and return
     end
   end
