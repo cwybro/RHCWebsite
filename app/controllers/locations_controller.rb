@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   include LocationsHelper
+  before_action :authenticate_user!, :except => [:show, :index]
+
   def index
     view_prefs, do_redirect= update_settings(params, session)
     if do_redirect
@@ -10,21 +12,32 @@ class LocationsController < ApplicationController
 
     @distance = view_prefs["distance_filter"]
     @location = view_prefs["location_filter"].to_s.strip
+    @admin = current_user.try(:admin?)
   end
 
   def new
+    if current_user.try(:admin?)
       @location = Location.new
+    else
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
+    end
   end
 
   def create
-    p=Location.new(create_update_params)
-    p.valid?
-    if p.save
+    if current_user.try(:admin?)
+      p=Location.new(create_update_params)
+      p.valid?
+      if p.save
         flash[:notice] = "New location \"#{p.title}\" created"
         redirect_to locations_path
-    else
+      else
         flash[:warning]= "Error creating new location"
         redirect_to new_location_path(p)
+      end
+    else
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
     end
   end
 
