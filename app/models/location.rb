@@ -8,11 +8,7 @@ class Location < ApplicationRecord
 
   validates_attachment :image,
       :content_type => {:content_type => ["image/jpeg", "image/png",]}
-
-
-  # acts_as_mappable
-  # acts_as_mappable :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
-
+      
   acts_as_mappable
   before_validation :geocode_address, :on => [:create, :save]
 
@@ -22,7 +18,6 @@ private
     geo=Geokit::Geocoders::GoogleGeocoder.geocode (address)
     errors.add(:address, "Could not Geocode address") if !geo.success
     self.lat, self.lng = geo.lat,geo.lng if geo.success
-
   end
 
 
