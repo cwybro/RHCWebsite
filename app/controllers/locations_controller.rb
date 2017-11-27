@@ -10,7 +10,6 @@ class LocationsController < ApplicationController
 
     @distance = view_prefs["distance_filter"]
     @location = view_prefs["location_filter"].to_s.strip
-
   end
 
   def new
@@ -28,8 +27,6 @@ class LocationsController < ApplicationController
         redirect_to new_location_path(p)
     end
   end
-
-
 
   def show
     begin
