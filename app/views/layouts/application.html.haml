@@ -21,14 +21,18 @@
           =link_to "Events", events_path, class: "nav-link"
         %li.nav-item.my-2
           =link_to "Locations", locations_path, class: "nav-link"
+      %ul.navbar-nav.mr-auto-ml-2.auth-btns
         - if user_signed_in?
-          %li.nav-item.my-2
-            =link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
+          %li.nav-item
+            %btn.btn-primary
+              =link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
         - else
-          %li.nav-item.my-2
-            =link_to "Login", new_user_session_path, class: "nav-link"
-          %li.nav-item.my-2
-            =link_to "Sign up", new_user_registration_path, class: "nav-link"
+          %li.nav-item
+            %btn.btn-primary
+              =link_to "Login", new_user_session_path, class: "nav-link"
+          %li.nav-item
+            %btn.btn-outline-primary
+              =link_to "Sign up", new_user_registration_path, class: "nav-link"
 
 
 
