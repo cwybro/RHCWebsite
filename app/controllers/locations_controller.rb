@@ -48,6 +48,24 @@ class LocationsController < ApplicationController
     end
   end
 
+  def update
+    if current_user.try(:admin?)
+      id = params[:id]
+      l = Location.find(id)
+      l.update(create_update_params)
+      if l.save
+        flash[:success] = "Location \"#{l.title}\" updated"
+        redirect_to location_path(l.id)
+      else
+        flash[:error] = "Error updating location"
+        redirect_to edit_location_path(l.id)
+      end
+    else
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
+    end
+  end
+
   private
   def create_update_params
     params.require(:location).permit(:title, :description, :address, :image)
