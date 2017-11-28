@@ -111,8 +111,25 @@ RSpec.describe LocationsController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "" do
+    it "renders the edit template with correct id if admin" do
+      login_with create(:user, :admin)
+      location = Location.create(title: "Triangle Park",
+        description: "Family fun for all",
+        address: "Hamilton, NY")
+        expect(Location).to receive(:find).with("1") {location}
+        get :edit, :params => {:id => 1}
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template(:edit)
+      end
 
-    end
+      it "redirects to locations page after permissions failure" do
+        location = Location.create(title: "Triangle Park",
+          description: "Family fun for all",
+          address: "Hamilton, NY")
+          # expect(Location).to receive(:find).with("1") {location}
+          get :edit, :params => {:id => 1}
+          expect(response).to have_http_status(:redirect)
+          expect(response).to redirect_to(locations_path)
+      end
   end
 end
