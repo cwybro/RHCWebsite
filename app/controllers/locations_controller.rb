@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   include LocationsHelper
-  before_action :authenticate_user!, :except => [:show, :index]
+  # before_action :authenticate_user!, :except => [:show, :index]
 
   def index
     view_prefs, do_redirect= update_settings(params, session)
@@ -27,7 +27,6 @@ class LocationsController < ApplicationController
   def create
     if current_user.try(:admin?)
       p=Location.new(create_update_params)
-      p.valid?
       if p.save
         flash[:notice] = "New location \"#{p.title}\" created"
         redirect_to locations_path
