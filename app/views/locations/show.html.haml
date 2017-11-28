@@ -9,6 +9,6 @@
     %p #{@location.address}
 
     -if @admin
-        %p= link_to "Edit location", edit_location_path(@location)
+        %p= link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary'
 
-=link_to 'Back to locations', locations_path
+=link_to 'Back to locations', locations_path, class: 'btn btn-secondary'
