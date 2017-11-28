@@ -84,4 +84,35 @@ RSpec.describe LocationsController, type: :controller do
         expect(flash[:warning]).to eq("Error creating new location")
       end
   end
+
+  describe "PUT #update" do
+    it "returns http redirect and modifies a location in the db if admin" do
+        login_with create(:user, :admin)
+        location = Location.create(title: "Triangle Park",
+              description: "Family fun for all",
+              address: "Hamilton, NY")
+        put :update, :params => {:id => location.id, :location => {:title => "Recreation Center"}}
+        location.reload
+        expect(location.title).to eq("Recreation Center")
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(location_url(location))
+    end
+
+    it "returns to the locations after permissions failure to update location" do
+        location = Location.create(title: "Triangle Park",
+            description: "Family fun for all",
+            address: "Hamilton, NY")
+        put :update, :params => {:id => location.id, :location => {:title => "Recreation Center"}}
+        location.reload
+        expect(location.title).to eq("Triangle Park")
+        expect(response).to redirect_to(locations_path)
+        expect(flash[:warning]).to eq("Invalid permissions")
+    end
+  end
+
+  describe "GET #edit" do
+    it "" do
+
+    end
+  end
 end
