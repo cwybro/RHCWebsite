@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   include LocationsHelper
+  # before_action :authenticate_user!, :except => [:show, :index]
+
   def index
     view_prefs, do_redirect= update_settings(params, session)
     if do_redirect
@@ -10,32 +12,68 @@ class LocationsController < ApplicationController
 
     @distance = view_prefs["distance_filter"]
     @location = view_prefs["location_filter"].to_s.strip
-
+    @admin = current_user.try(:admin?)
   end
 
   def new
+    if current_user.try(:admin?)
       @location = Location.new
-  end
-
-  def create
-    p=Location.new(create_update_params)
-    p.valid?
-    if p.save
-        flash[:notice] = "New location \"#{p.title}\" created"
-        redirect_to locations_path
     else
-        flash[:warning]= "Error creating new location"
-        redirect_to new_location_path(p)
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
     end
   end
 
-
+  def create
+    if current_user.try(:admin?)
+      p=Location.new(create_update_params)
+      if p.save
+        flash[:notice] = "New location \"#{p.title}\" created"
+        redirect_to locations_path
+      else
+        flash[:warning]= "Error creating new location"
+        redirect_to new_location_path(p)
+      end
+    else
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
+    end
+  end
 
   def show
     begin
       @location = Location.find(params[:id])
+      @admin = current_user.try(:admin?)
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, location not found"
+      redirect_to locations_path and return
+    end
+  end
+
+  def edit
+    if current_user.try(:admin?)
+      id = params[:id]
+      @location = Location.find(id)
+    else
+      flash[:warning] = "Invalid permissions"
+      redirect_to locations_path and return
+    end
+  end
+
+  def update
+    if current_user.try(:admin?)
+      id = params[:id]
+      l = Location.find(id)
+      l.update(create_update_params)
+      if l.save
+        flash[:success] = "Location \"#{l.title}\" updated"
+        redirect_to location_path(l.id)
+      else
+        flash[:error] = "Error updating location"
+        redirect_to edit_location_path(l.id)
+      end
+    else
+      flash[:warning] = "Invalid permissions"
       redirect_to locations_path and return
     end
   end

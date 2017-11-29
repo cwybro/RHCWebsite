@@ -55,7 +55,16 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # Setup Devise
+  config.include ControllerHelpers, type: :controller
+    Warden.test_mode!
+
+    config.after do
+      Warden.test_reset!
+    end
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Warden::Test::Helpers
+  config.include FactoryBot::Syntax::Methods
+
+  FactoryBot.definition_file_paths = [File.expand_path('../factories', __FILE__)]
+  FactoryBot.find_definitions
 end
