@@ -11,3 +11,48 @@
 .contents {
   margin-left: 10%;
 }
+
+.rounded {
+  border-radius: 10px;
+}
+
+.cell-title {
+  margin-top: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  border: none;
+}
+
+.cell-subtitle {
+  text-decoration: none;
+}
+
+.top-spacing {
+  margin-top: 20px;
+}
+
+.header {
+  font-size: 35px;
+  font-weight: bold;
+  padding: 10px 0px 20px 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-weight: normal;
+  font-size: 17px;
+}
+
+.spacing {
+  padding: 10px 0px 10px 0px;
+}
+
+// .grow { transition: all .2s ease-in-out; }
+// .grow:hover { transform: scale(1.02); }

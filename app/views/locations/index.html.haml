@@ -10,22 +10,19 @@
     .col-3
     .col-3
       =submit_tag "Refine the list of locations", class: 'btn btn-primary'
-%table.table
-  %thead
-    %tr
-      %th
-      %th Title
-      %th Description
-      %th Address
 
-  %tbody
-    -@locations.each do |loc|
-      %tr
-        -if loc.image.present?
-          %td.image= image_tag(loc.image.url(:thumb), :alt => %Q"Picture of #{loc.title}")
-        %td.title= link_to "#{loc.title}", location_path(loc)
-        %td.description #{loc.description}
-        %td.details #{loc.address}
--if @admin
-  = link_to "Add new location", new_location_url, class: 'btn btn-primary'
-= link_to "Back to Home", root_url,  class: 'btn btn-outline-secondary home-link'
+.container-fluid
+  -@locations.in_groups_of(3).each do |row|
+    .row
+      - row.each do |col|
+        - if col
+          .col-lg-4.col-md-6.col-sm-12
+            .container
+              -if col.image.present?
+                =image_tag(col.image.url(:grid), :alt => %Q"Picture of #{col.title}", :class => "rounded")
+              .cell-title= link_to "#{col.title}", location_path(col)
+
+.top-spacing
+  = link_to "Back to Home", root_url, class: 'btn btn-outline-secondary btn-sm spacing home-link'
+  -if @admin
+    = link_to "Add new location", new_location_url, class: 'btn btn-primary btn-sm spacing'
