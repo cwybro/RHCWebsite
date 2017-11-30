@@ -1,15 +1,15 @@
 %h2 Upcoming Events
-
-- last_date = nil
-- @upcoming_events.each do |event|
-  - if last_date != event.date
-    - last_date = event.date
-    %h3.date= event.readable_date
-  -if event.image.present?
-    .event-image= image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image")
-  %p.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
+.event-list
+  - last_date = nil
+  - @upcoming_events.each do |event|
+    - if last_date != event.date
+      - last_date = event.date
+      %h3.date= event.readable_date
+    -if event.image.present?
+      .event-image= image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image")
+    %p.subtitle.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
 
 %br
-%p= link_to "Add new event", new_event_url
+= link_to "Add new event", new_event_url, class: 'btn btn-primary'
 
-%p.home-link= link_to "Back to Home", root_url
+= link_to "Back to Home", root_url,  class: 'btn btn-secondary home-link'

@@ -1,14 +1,14 @@
--if @location.image.present?
-    .location-image= image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image")
-%h2.header #{@location.title}
+.container
+    -if @location.image.present?
+        .location-image= image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image")
+    %h2.header #{@location.title}
 
-%h4 #{@location.description}
-%h4 #{@location.address}
-%h5 Latitude: #{@location.lat}
-%h5 Longitude: #{@location.lng}
+    %h5 Description:
+    %p #{@location.description}
+    %h5 Address:
+    %p #{@location.address}
 
-%p= link_to "Edit Location", edit_location_url(@location)
+    -if @admin
+        %p= link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary'
 
-
-
-=link_to 'Back to locations', locations_path
+=link_to 'Back to locations', locations_path, class: 'btn btn-secondary'

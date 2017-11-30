@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  # before_action :authenticate_user!, :except => [:show, :index]
 
   def index
     @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
@@ -18,7 +19,6 @@ class EventsController < ApplicationController
       redirect_to new_event_path(p)
     end
   end
-
 
   def edit
     id = params[:id]
