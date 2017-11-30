@@ -36,41 +36,45 @@ $highlight-color: $quinary-color;
 $paragraph-color: #666666;
 $alternate-color: $primary-color;
 
+$text-color: #262221;
+$text-color-light: #3C3635;
+$font: 'Open Sans', sans-serif;
 
 // Text Styling
 h1, h2 {
-    color: $title-color;
+    color: $text-color;
     padding: 30px 0;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    font-weight: bold;
 }
 
 h3 {
-    color: $subtitle-color;
+    color: $text-color;
     margin-bottom: 20px;
 }
 
 p {
-    color: $paragraph-color;
+    color: $text-color-light;
 }
 
 .subtitle {
-    color: $subtitle-color;
+    color: $text-color-light;
 }
 
 body {
     background-color: $bg-light;
+    font-family: $font
 }
 // Other styling
 .container.content-wrapper {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-left: $title-color 2px solid;
-    border-right: $title-color 2px solid;
-    border-bottom: $title-color 2px solid;
+    // border-bottom-left-radius: 10px;
+    // border-bottom-right-radius: 10px;
+    // border-left: $title-color 2px solid;
+    // border-right: $title-color 2px solid;
+    // border-bottom: $title-color 2px solid;
     margin-bottom: 20px;
-    background-color: white;
+    // background-color: white;
     padding-left: 20px;
     padding-right: 20px;
     min-height: 800px;
@@ -93,9 +97,6 @@ body {
     background-color: $title-color;
     color: white;
 }
-
-
-
 
 .btn-secondary {
     @extend .btn-secondary;
@@ -128,12 +129,14 @@ body {
     margin-top: 25px;
 }
 
-.auth-btns {
-  margin-right: 25px;
+.navbar {
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 }
 
-.navbar {
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+.section-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
 }

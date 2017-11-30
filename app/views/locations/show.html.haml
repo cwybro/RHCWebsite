@@ -2,14 +2,15 @@
     -if @location.image.present?
         =image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image", :class => 'cover-img')
 
-    %h2.header #{@location.title}
-
-    %h5 Description:
-    %p #{@location.description}
-    %h5 Address:
+    %h2 #{@location.title}
+    %hr
+    .section-title Where
     %p #{@location.address}
+    %hr
+    .section-title About
+    %p #{@location.description}
 
     -if @admin
         %p= link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary'
 
-=link_to 'Back to locations', locations_path, class: 'btn btn-secondary'
+    =link_to 'Back to locations', locations_path, class: 'btn btn-outline-secondary btn-sm'

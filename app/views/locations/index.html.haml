@@ -13,7 +13,7 @@
 %table.table
   %thead
     %tr
-      %th Image
+      %th
       %th Title
       %th Description
       %th Address
@@ -28,4 +28,4 @@
         %td.details #{loc.address}
 -if @admin
   = link_to "Add new location", new_location_url, class: 'btn btn-primary'
-= link_to "Back to Home", root_url,  class: 'btn btn-secondary home-link'
+= link_to "Back to Home", root_url,  class: 'btn btn-outline-secondary home-link'
