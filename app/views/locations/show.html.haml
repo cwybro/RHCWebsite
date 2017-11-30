@@ -1,7 +1,7 @@
-.container
-    -if @location.image.present?
-        =image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image", :class => 'cover-img')
+-if @location.image.present?
+    =image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image", :class => 'cover-img')
 
+.container
     .header #{@location.title}
     .section-subtitle #{@location.address}
     %hr
