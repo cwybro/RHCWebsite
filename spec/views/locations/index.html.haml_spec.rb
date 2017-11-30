@@ -25,18 +25,18 @@ RSpec.describe "index page", type: :feature do
     click_button "Refine the list of locations"
     visit "/locations"
     names = []
-    page.all(".title").each { |x| names << x.text }
+    page.all(".cell-title").each { |x| names << x.text }
     expect(names.length).to eq(1)
     visit "/locations"
     names = []
-    page.all(".title").each { |x| names << x.text }
+    page.all(".cell-title").each { |x| names << x.text }
     expect(names.length).to eq(1)
     visit "/locations"
     fill_in "Within", :with => ""
     fill_in "miles of", :with => ""
     click_button "Refine the list of locations"
     names = []
-    page.all(".title").each { |x| names << x.text }
+    page.all(".cell-title").each { |x| names << x.text }
     expect(names.length).to eq(4)
   end
 end
