@@ -1,6 +1,7 @@
 .container
     -if @location.image.present?
-        .location-image= image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image")
+        =image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image", :class => 'cover-img')
+
     %h2.header #{@location.title}
 
     %h5 Description:
