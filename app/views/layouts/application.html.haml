@@ -13,9 +13,12 @@
   %body
     %nav.navbar.navbar-default.navbar-expand-lg.navbar-light.bg-light.sticky-top{:role => "navigation"}
       .navbar-header
-        .navbar-brand= link_to "Madison County RHC", root_path
-        %button.navbar-toggler{"data-target" => "#collapsed-bar", "data-toggle" => "collapse", type: "button"}
-          %span.navbar-toggler-icon
+        %a.navbar-brand{:href => root_path}
+          %span
+            = image_tag("/assets/rhcBrand.svg", :alt => "", :height => "40", :width => "40", :class => "d-inline-block")
+            = "Madison County"
+          %button.navbar-toggler{"data-target" => "#collapsed-bar", "data-toggle" => "collapse", type: "button"}
+            %span.navbar-toggler-icon
 
       .collapse.navbar-collapse{:id => "collapsed-bar"}
         %ul.navbar-nav
