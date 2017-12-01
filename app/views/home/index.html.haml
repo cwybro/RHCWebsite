@@ -10,6 +10,7 @@
 .row
     .col-6
         .card
+            =image_tag("/assets/locationsCover.jpeg", :alt => "location header image", :class => "card-img-top")
             .card-body
                 %h3.card-title Locations
                 %p.card-text Explore new places in Madison County
@@ -18,6 +19,7 @@
                     = link_to "Create", new_location_url, class: "btn btn-outline-success btn-block"
     .col-6
         .card
+            =image_tag("/assets/eventsCover.jpeg", :alt => "location header image", :class => "card-img-top")
             .card-body
                 %h3.card-title Events
                 %p.card-text Discover activities in Madison County
