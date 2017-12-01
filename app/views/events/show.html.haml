@@ -4,23 +4,33 @@
         .event-image= image_tag(@event.image.url(:header), :alt => %Q"#{@event.title} header image")
     %h2.header #{@event.title}
 
-    %h5 Description of event:
-    %p #{@event.description}
-    %h5 Time and date:
-    %p #{@event.readable_date}
-    %h5 Location of event
-    %p #{@event.address}
+    .card-deck
+        .card
+            .card-body
+                %h4.card-title About
+                %p.card-text #{@event.description}
 
-    %p= link_to "Edit event", edit_event_url(@event)
+        .card
+            .card-body
+                %h4.card-title When
+                %p.card-text #{@event.readable_date}
+
+
+        .card
+            .card-body
+                %h4.card-title Location
+                %p.card-text #{@event.address}
+
+    .top-= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
+    %hr
 
     - if !@event.recap.nil?
-        %h5 Quick recap of the event
-        %h5 Attendance
-        %p #{@event.recap.attendance}
-        %h5 General comments
-        %p #{@event.recap.description}
-        =link_to 'Edit event summary', edit_event_recap_url(@event)
+        .jumbotron.jumbotron-fluid.text-center
+            .container
+                %h1.display-3 #{@event.recap.attendance} attendees
+                %p.lead #{@event.recap.description}
+        =link_to 'Edit recap', edit_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
     - else
-        =link_to 'Submit a new event summary', new_event_recap_url(@event)
+        =link_to 'Add recap', new_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
 
-=link_to 'Back to list of events',events_url
+.top-= link_to 'Back to list of events', events_url, class: 'btn btn-secondary btn-sm'
