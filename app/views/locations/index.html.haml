@@ -7,9 +7,8 @@
     .col-3
       =label_tag "location_filter", "miles of"
       =text_field_tag "location_filter", "#{@location}", class: 'form-control col-xs-3'
-    .col-3
-    .col-3
-      =submit_tag "Refine the list of locations", class: 'btn btn-primary'
+    .col-6.text-left
+      =submit_tag "Refine the list of locations", class: 'btn btn-primary filter-btn'
 
 .container-fluid
   -@locations.in_groups_of(3).each do |row|

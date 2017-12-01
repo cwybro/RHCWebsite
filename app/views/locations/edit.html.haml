@@ -4,5 +4,5 @@
   =form_for @location, :method => :put do |f|
     =render 'location_form_template', form: f
     .field
-      =f.submit "Update location", class: 'btn btn-primary'
-      =link_to "Back to location", location_path(@location.id)
+      =link_to "Back to location", location_path(@location.id), class: 'btn btn-outline-secondary btn-sm'
+      =f.submit "Update location", class: 'btn btn-primary btn-sm'
