@@ -1,21 +1,21 @@
 # RHCWebsite
 
 ### Environment Variables
-To better hide our API keys (like Google), we will use Heroku `Environment variables`. These allow us to configure key-value pairs that will be used at runtime in our application. Due to this however, we must also use a `.env` file that contains these key-value pairs to test the app, since the `environment variables` on Heroku won't be used on a local server.
+To better hide our API keys (like Google), we will use Heroku `Environment Variables`. These allow us to configure key-value pairs that will be used at runtime in our application. Due to this however, we must also use a `.env` file that contains these key-value pairs to test the app, since the `environment variables` on Heroku won't be used on a local server.
 
 #### .env File
 The `.env` file is a file that contains lines like the following: ```API_KEY=yourKey```. Using the command mentioned below, your local environment will use this file to configure your app in a similar manner to the cloud environment, assigning values to the places you've specified in the code.
 
 To access the value of a key in the Rails app, you use: ```ENV['API_KEY']``` where ENV is the collection containing all of the `environment variables`.
 
-Although the `.gitignore` already ignores the `.env` file, it should **never** be committed to the repo -- doing so would expose the `environment variables`. 
+Although the `.gitignore` already ignores the `.env` file, it should **never** be committed to the repo -- doing so would expose the `environment variables`.
 
 #### Run locally
 Instead of using the usual ```rails server``` command, use: ```heroku local:run rails server``` to run the app locally (on `localhost`).
 
 #### Resources
-[Heroku - configure](https://devcenter.heroku.com/articles/config-vars)
-[Heroku - run app locally](https://devcenter.heroku.com/articles/heroku-local)
+* [Heroku - configure](https://devcenter.heroku.com/articles/config-vars)
+* [Heroku - run app locally](https://devcenter.heroku.com/articles/heroku-local)
 
 
 ### PR Workflow How-To
