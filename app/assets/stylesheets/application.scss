@@ -163,17 +163,6 @@ body {
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 }
 
-.navbar-text.admin-text {
-  font-size: 13px;
-  font-weight: bold;
-  color: white;
-  background-color: $primary-color;
-  border-radius: 16px;
-  width: 32px;
-  height: 32px;
-  text-align: center;
-}
-
 .card {
   @extend .card;
   -webkit-box-shadow: 0px 2px 11px -4px rgba(0,0,0,0.2);
@@ -194,4 +183,9 @@ body {
   @include media-breakpoint-only(sm) {
     column-count: 1;
   }
+}
+
+.badge-primary {
+  @extend .badge-primary;
+  background-color: $primary-color;
 }

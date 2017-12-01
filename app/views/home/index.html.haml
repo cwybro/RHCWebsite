@@ -7,23 +7,21 @@
         .col-6.text-center
             =image_tag(@event_img, :alt => "")
 
-.row
-    .col-6
-        .card
-            =image_tag("/assets/locationsCover.jpeg", :alt => "location header image", :class => "card-img-top")
-            .card-body
-                %h3.card-title Locations
-                %p.card-text Explore new places for hiking, sports, and more
-                = link_to "Explore", locations_url, class: "btn btn-primary btn-block"
-                -if @admin
-                    = link_to "Create", new_location_url, class: "btn btn-outline-secondary btn-block"
-    .col-6
-        .card
-            =image_tag("/assets/eventsCover.jpeg", :alt => "location header image", :class => "card-img-top")
-            .card-body
-                %h3.card-title Events
-                %p.card-text Discover activities
-                = link_to "Explore", events_url, class: "btn btn-primary btn-block"
-                = link_to "Create", new_event_url, class: "btn btn-outline-secondary btn-block"
+.card-deck
+    .card
+        =image_tag("/assets/locationsCover.jpeg", :alt => "location header image", :class => "card-img-top")
+        .card-body
+            %h3.card-title Locations
+            %p.card-text Explore new places for hiking, sports, and more
+            = link_to "Explore", locations_url, class: "btn btn-primary btn-block"
+            -if @admin
+                = link_to "Create", new_location_url, class: "btn btn-outline-secondary btn-block"
+    .card
+        =image_tag("/assets/eventsCover.jpeg", :alt => "location header image", :class => "card-img-top")
+        .card-body
+            %h3.card-title Events
+            %p.card-text Discover activities
+            = link_to "Explore", events_url, class: "btn btn-primary btn-block"
+            = link_to "Create", new_event_url, class: "btn btn-outline-secondary btn-block"
 %hr
 %h2 Upcoming

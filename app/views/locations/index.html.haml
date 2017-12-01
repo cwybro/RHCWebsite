@@ -17,6 +17,7 @@
         = image_tag(loc.image.url(:grid), :alt => %Q"Picture of #{loc.title}", :class =>"card-img-top")
       .card-body
         %h4.card-title #{loc.title}
+        %p.text-muted #{loc.address}
         = link_to "Details", location_path(loc), class: "btn btn-outline-primary btn-sm"
 
 %br
