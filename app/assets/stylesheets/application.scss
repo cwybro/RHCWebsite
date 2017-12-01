@@ -20,26 +20,32 @@
 // over regular CSS
 
 // Colors taken from "Outdoor Fun" theme on http://color.adobe.com
-$primary-color: #A33804;
-$secondary-color: #DCA212;
-$tertiary-color: #C6C962;
-$quarternary-color: #94B92B;
-$quinary-color: #90BDA8;
+// $primary-color: #A33804;
+// $secondary-color: #DCA212;
+// $tertiary-color: #C6C962;
+// $quarternary-color: #94B92B;
+// $quinary-color: #90BDA8;
 $bg-light: #FAFAFA;
 $bg-dark: #AFAFAF;
 
-$title-color: $quarternary-color;
-$subtitle-color: $secondary-color;
-$emphasis-color: $tertiary-color;
-$object-color: $tertiary-color;
-$highlight-color: $quinary-color;
-$paragraph-color: #666666;
-$alternate-color: $primary-color;
+// $title-color: $quarternary-color;
+// $subtitle-color: $secondary-color;
+// $emphasis-color: $tertiary-color;
+// $object-color: $tertiary-color;
+// $highlight-color: $quinary-color;
+// $paragraph-color: #666666;
+// $alternate-color: $primary-color;
 
 $text-color: #424651;
 $text-color-light: #3C3635;
-$admin-color: #4784C1;
+// $admin-color: #4784C1;
 $font: 'Open Sans', sans-serif;
+
+$primary-color: #726DA8;
+$primary-color-dark: #53507B;
+
+$secondary-color: #39A0ED;
+$secondary-color-dark: #2A75AD;
 
 // Text Styling
 h1, h2 {
@@ -50,7 +56,7 @@ h1, h2 {
     font-weight: bold;
 }
 
-h3 {
+h3, h4 {
     color: $text-color;
     margin-bottom: 20px;
 }
@@ -76,37 +82,63 @@ body {
     min-height: 800px;
 }
 
-// .btn-primary {
-//     @extend .btn-primary;
-//     background-color: $title-color;
-//     border-color: $title-color;
-//     color: white;
-// }
+.btn-primary {
+    @extend .btn-primary;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+}
 
-// .btn-primary:hover {
-//     background-color: white;
-//     color: $title-color;
-//     border-color: $title-color;
-// }
+.btn-primary:hover {
+    background-color: $primary-color-dark;;
+    border-color: $primary-color-dark;
+    color: white;
+}
+
+.btn-outline-primary {
+  @extend .btn-outline-primary;
+  background-color: white;
+  border-color: $primary-color;
+  color: $primary-color;
+}
+
+.btn-outline-primary:hover {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color: white;
+}
 
 // .btn-primary:active {
 //     background-color: $title-color;
 //     color: white;
 // }
 
-// .btn-secondary {
-//     @extend .btn-secondary;
-//     background-color: $highlight-color;
-//     border-color: $highlight-color;
-//     color: white;
-// }
+.btn-secondary {
+    @extend .btn-secondary;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    color: white;
+}
 
-// .btn-secondary:hover {
-//     background-color: white;
-//     color: $highlight-color;
-//     border-color: $highlight-color;
-// }
-//
+.btn-secondary:hover {
+    background-color: $secondary-color-dark;
+    border-color: $secondary-color-dark;
+    color: white;
+}
+
+.btn-outline-secondary {
+  @extend .btn-outline-secondary;
+  background-color: white;
+  border-color: $secondary-color;
+  color: $secondary-color;
+}
+
+.btn-outline-secondary:hover {
+  background-color: $secondary-color;
+  border-color: $secondary-color;
+  color: white;
+}
+
 // .btn-secondary:active {
 //     background-color: $highlight-color;
 //     color: white;
@@ -135,9 +167,31 @@ body {
   font-size: 13px;
   font-weight: bold;
   color: white;
-  background-color: $admin-color;
+  background-color: $primary-color;
   border-radius: 16px;
   width: 32px;
   height: 32px;
   text-align: center;
+}
+
+.card {
+  @extend .card;
+  -webkit-box-shadow: 0px 2px 11px -4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 2px 11px -4px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 11px -4px rgba(0,0,0,0.2);
+}
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(sm) {
+    column-count: 1;
+  }
 }
