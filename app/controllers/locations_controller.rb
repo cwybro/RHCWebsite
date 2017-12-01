@@ -44,6 +44,10 @@ class LocationsController < ApplicationController
     begin
       @location = Location.find(params[:id])
       @admin = current_user.try(:admin?)
+
+      api_key = ENV['GOOGLE_API_KEY']
+      coords = [@location.lat, @location.lng].join(',')
+      @google_src = "https://www.google.com/maps/embed/v1/place?key=#{api_key}&q=#{coords}"
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, location not found"
       redirect_to locations_path and return
