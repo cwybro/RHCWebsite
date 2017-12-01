@@ -22,8 +22,8 @@
 
       .collapse.navbar-collapse{:id => "collapsed-bar"}
         %ul.navbar-nav
-          %li.nav-item.my-2= link_to "Events", events_path, class: "nav-link"
           %li.nav-item.my-2= link_to "Locations", locations_path, class: "nav-link"
+          %li.nav-item.my-2= link_to "Events", events_path, class: "nav-link"
         %ul.navbar-nav.ml-auto
           - if user_signed_in?
             %li.nav-item.my-2= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link"
