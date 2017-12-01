@@ -1,9 +1,27 @@
-%h2.header Home
-%p.location-link= link_to "Locations", locations_url
-%p.event-link= link_to "Events", events_url
 %br
-%p
-    %strong= link_to "Add your event here!", new_event_url
--if @admin
-    %p
-        %strong= link_to "Add new location!", new_location_url
+.row
+    -if @location_img
+        .col-6.text-center
+            =image_tag(@location_img, :alt => "")
+    -if @event_img
+        .col-6.text-center
+            =image_tag(@event_img, :alt => "")
+
+.row
+    .col-6
+        .card
+            .card-body
+                %h3.card-title Locations
+                %p.card-text Explore new places in Madison County
+                = link_to "Explore", locations_url, class: "btn btn-primary btn-block"
+                -if @admin
+                    = link_to "Create", new_location_url, class: "btn btn-outline-success btn-block"
+    .col-6
+        .card
+            .card-body
+                %h3.card-title Events
+                %p.card-text Discover activities in Madison County
+                = link_to "Explore", events_url, class: "btn btn-primary btn-block"
+                = link_to "Create", new_event_url, class: "btn btn-outline-success btn-block"
+%hr
+%h2 Upcoming

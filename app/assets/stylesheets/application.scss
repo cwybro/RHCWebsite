@@ -36,8 +36,9 @@ $highlight-color: $quinary-color;
 $paragraph-color: #666666;
 $alternate-color: $primary-color;
 
-$text-color: #262221;
+$text-color: #424651;
 $text-color-light: #3C3635;
+$admin-color: #4784C1;
 $font: 'Open Sans', sans-serif;
 
 // Text Styling
@@ -66,6 +67,7 @@ body {
     background-color: $bg-light;
     font-family: $font
 }
+
 // Other styling
 .container.content-wrapper {
     margin-bottom: 20px;
@@ -74,41 +76,41 @@ body {
     min-height: 800px;
 }
 
-.btn-primary {
-    @extend .btn-primary;
-    background-color: $title-color;
-    border-color: $title-color;
-    color: white;
-}
+// .btn-primary {
+//     @extend .btn-primary;
+//     background-color: $title-color;
+//     border-color: $title-color;
+//     color: white;
+// }
 
-.btn-primary:hover {
-    background-color: white;
-    color: $title-color;
-    border-color: $title-color;
-}
+// .btn-primary:hover {
+//     background-color: white;
+//     color: $title-color;
+//     border-color: $title-color;
+// }
 
-.btn-primary:active {
-    background-color: $title-color;
-    color: white;
-}
+// .btn-primary:active {
+//     background-color: $title-color;
+//     color: white;
+// }
 
-.btn-secondary {
-    @extend .btn-secondary;
-    background-color: $highlight-color;
-    border-color: $highlight-color;
-    color: white;
-}
+// .btn-secondary {
+//     @extend .btn-secondary;
+//     background-color: $highlight-color;
+//     border-color: $highlight-color;
+//     color: white;
+// }
 
-.btn-secondary:hover {
-    background-color: white;
-    color: $highlight-color;
-    border-color: $highlight-color;
-}
-
-.btn-secondary:active {
-    background-color: $highlight-color;
-    color: white;
-}
+// .btn-secondary:hover {
+//     background-color: white;
+//     color: $highlight-color;
+//     border-color: $highlight-color;
+// }
+//
+// .btn-secondary:active {
+//     background-color: $highlight-color;
+//     color: white;
+// }
 
 
 .filter-form {
@@ -127,4 +129,15 @@ body {
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
   -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+}
+
+.navbar-text.admin-text {
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  background-color: $admin-color;
+  border-radius: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
 }

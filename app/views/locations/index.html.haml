@@ -16,10 +16,10 @@
       - row.each do |col|
         - if col
           .col-lg-4.col-md-6.col-sm-12
-            .container
+            .card.text-center
               -if col.image.present?
-                =image_tag(col.image.url(:grid), :alt => %Q"Picture of #{col.title}", :class => "rounded")
-              .cell-title= link_to "#{col.title}", location_path(col)
+                =image_tag(col.image.url(:grid), :alt => %Q"Picture of #{col.title}", :class =>"card-img-top")
+              %a.card-title= link_to "#{col.title}", location_path(col)
 
 .top-spacing
   = link_to "Back to Home", root_url, class: 'btn btn-outline-secondary btn-sm spacing home-link'
