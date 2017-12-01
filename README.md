@@ -14,7 +14,7 @@ Although the `.gitignore` already ignores the `.env` file, it should **never** b
 Instead of using the usual ```rails server``` command, use: ```heroku local:run rails server``` to run the app locally (on `localhost`).
 
 #### Resources
-* [Heroku - configure](https://devcenter.heroku.com/articles/config-vars)
+* [Heroku - configure environment variables](https://devcenter.heroku.com/articles/config-vars)
 * [Heroku - run app locally](https://devcenter.heroku.com/articles/heroku-local)
 
 
