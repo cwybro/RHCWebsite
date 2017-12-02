@@ -4,5 +4,5 @@
   =form_for @event, :method => :put do |f|
     =render 'event_form_template', form: f
     .field
-      =f.submit "Update event details", class: 'btn btn-primary'
-      =link_to "Back to Event", event_path(@event.id)
+      =link_to "Back to event", event_path(@event.id), class: 'btn btn-outline-primary btn-sm'
+      =f.submit "Update event details", class: 'btn btn-primary btn-sm'
