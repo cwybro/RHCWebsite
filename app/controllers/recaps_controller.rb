@@ -2,14 +2,13 @@ class RecapsController < ApplicationController
   before_action :set_event 
   before_action :set_recap, only: [:edit, :update]
 
-  # TODO: Don't actually need this
-  # def index
-  #   @event_recaps = EventRecap.all
-  # end
+  def index
+    redirect_to(events_path)
+  end
 
-  # TODO: Don't actually need this
-  # def show
-  # end
+  def show
+    redirect_to(events_path)
+  end
 
   def new
     @recap = Recap.new
