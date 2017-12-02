@@ -17,6 +17,6 @@
                     :src => @google_src}
 
     .top-spacing
-        =link_to 'Back to locations', locations_path, class: 'btn btn-outline-secondary btn-sm'
+        =link_to 'Back to locations', locations_path, class: 'btn btn-outline-primary btn-sm'
         -if @admin
             = link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary btn-sm'

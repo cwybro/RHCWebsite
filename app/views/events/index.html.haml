@@ -10,6 +10,5 @@
     %p.subtitle.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
 
 %br
-= link_to "Add new event", new_event_url, class: 'btn btn-primary'
-
-= link_to "Back to Home", root_url,  class: 'btn btn-secondary home-link'
+= link_to "Back to Home", root_url,  class: 'btn btn-outline-primary btn-sm home-link'
+= link_to "Add new event", new_event_url, class: 'btn btn-primary btn-sm'
