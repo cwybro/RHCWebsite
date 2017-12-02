@@ -5,5 +5,5 @@
   =form_for @location, :method => :post do |f|
     =render 'location_form_template', form: f
     .field
-      =link_to "Back to Locations Page", locations_path, class: 'btn btn-outline-secondary btn-sm'
+      =link_to "Back to Locations Page", locations_path, class: 'btn btn-outline-primary btn-sm'
       =f.submit "Create Location", class: 'btn btn-primary btn-sm'

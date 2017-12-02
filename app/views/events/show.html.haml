@@ -21,7 +21,7 @@
                 %h4.card-title Location
                 %p.card-text #{@event.address}
 
-    .top-= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
+    .top-spacing= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
     %hr
 
     - if !@event.recap.nil?
@@ -31,6 +31,6 @@
                 %p.lead #{@event.recap.description}
         =link_to 'Edit recap', edit_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
     - else
-        =link_to 'Add recap', new_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
+        =link_to 'Add recap', new_event_recap_url(@event), class: 'btn btn-primary btn-sm'
 
-.top-= link_to 'Back to list of events', events_url, class: 'btn btn-secondary btn-sm'
+.top-spacing= link_to 'Back to list of events', events_url, class: 'btn btn-outline-primary btn-sm'
