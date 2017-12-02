@@ -80,6 +80,10 @@ RSpec.describe Event, type: :model do
                          address: "100 broad street, Hamilton, NY 13346",
                          )
 	expect(Event.today).to eq(Event.where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current.end_of_day))
-	expect(Event.today.length > 0).to eq(true)
+	num_events_today = Event.today.length
+	expect(num_events_today > 0).to eq(true)
+	today_ev.datetime = Date.today - 2  # two days ago.
+	today_ev.save
+	expect(num_events_today - Event.today.length).to eq(1)
     end
 end
