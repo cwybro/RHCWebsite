@@ -1,5 +1,5 @@
 class RecapsController < ApplicationController
-  before_action :set_event 
+  before_action :set_event, only: [:new, :edit, :create, :update]
   before_action :set_recap, only: [:edit, :update]
 
   def index
