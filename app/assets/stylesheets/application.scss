@@ -14,38 +14,11 @@
  *= require_self
  */
 @import 'bootstrap';
+@import 'colors';
 
 // For more information about the scss syntax and the sass language, go to http://sass-lang.com/guide
 // I think it's fine to use vanilla CSS in an scss file, but there are many advantages to using SCSS
 // over regular CSS
-
-// Colors taken from "Outdoor Fun" theme on http://color.adobe.com
-// $primary-color: #A33804;
-// $secondary-color: #DCA212;
-// $tertiary-color: #C6C962;
-// $quarternary-color: #94B92B;
-// $quinary-color: #90BDA8;
-$bg-light: #FAFAFA;
-$bg-dark: #AFAFAF;
-
-// $title-color: $quarternary-color;
-// $subtitle-color: $secondary-color;
-// $emphasis-color: $tertiary-color;
-// $object-color: $tertiary-color;
-// $highlight-color: $quinary-color;
-// $paragraph-color: #666666;
-// $alternate-color: $primary-color;
-
-$text-color: #424651;
-$text-color-light: #3C3635;
-// $admin-color: #4784C1;
-$font: 'Open Sans', sans-serif;
-
-$primary-color: #726DA8;
-$primary-color-dark: #53507B;
-
-$secondary-color: #39A0ED;
-$secondary-color-dark: #2A75AD;
 
 // Text Styling
 h1, h2 {
