@@ -8,6 +8,13 @@ class Location < ApplicationRecord
   validates_attachment :image,
       :content_type => {:content_type => ["image/jpeg", "image/png",]}
 
+
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  # acts_as_mappable
+  # acts_as_mappable :auto_geocode=>{:field=>:address, :error_message=>'Could not geocode address'}
+
   acts_as_mappable
   before_validation :geocode_address, :on => [:create, :save]
 
