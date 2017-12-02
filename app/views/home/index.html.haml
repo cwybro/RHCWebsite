@@ -23,6 +23,16 @@
             %p.card-text Discover activities
             = link_to "Explore", events_url, class: "btn btn-primary btn-block"
             = link_to "Create", new_event_url, class: "btn btn-outline-primary btn-block"
-            
+
 %hr.top-spacing
-%h2 Upcoming
+%h2 Today's Events
+.todays-events
+    - if @todays_events.empty?
+        %em
+            There are no events today.
+            %br
+            = link_to 'Create your own event', new_event_path
+            or
+            = link_to 'view upcoming events!', events_path
+    - else
+        = render "events/list_events", events: @todays_events
