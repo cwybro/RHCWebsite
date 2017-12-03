@@ -84,4 +84,18 @@ RSpec.describe Event, type: :model do
         expect(ev.tags.size).to eq(1)
         expect(ev.tags.first.name).to eq("Indoors")
     end
+    it "should collect events from today using the :today scope" do
+        today_ev = Event.create!(title: "5k chirstmas charity run",
+                         datetime: DateTime.current(),  # require 'date'
+                         description: "Come and run the christmas 5K to raise money for the Madison
+                         Country Rural Health Council",
+                         address: "100 broad street, Hamilton, NY 13346",
+                         )
+      	expect(Event.today).to eq(Event.where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current.end_of_day))
+      	num_events_today = Event.today.length
+      	expect(num_events_today > 0).to eq(true)
+      	today_ev.datetime = Date.today - 2  # two days ago.
+      	today_ev.save
+      	expect(num_events_today - Event.today.length).to eq(1)
+    end
 end

@@ -1,9 +1,9 @@
 #main.container
   =flash[:error]
-  %h3.header Create a New Location!
+  %h3.header New location
 
   =form_for @location, :method => :post do |f|
     =render 'location_form_template', form: f
     .field
-      =f.submit "Create Location", class: 'btn btn-primary'
-      =link_to "Back to Locations Page", locations_path
+      =link_to "Back to Locations Page", locations_path, class: 'btn btn-outline-primary btn-sm'
+      =f.submit "Create Location", class: 'btn btn-primary btn-sm'

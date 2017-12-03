@@ -5,9 +5,9 @@ class Event < ApplicationRecord
     validates :title, :description, :address, :datetime, presence: true
     validate :timeliness_of_datetime
 
+    scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
-  
     has_attached_file :image,
     :styles=> {:header => "800x400#", :thumb => "100x100#" }
     # no default, use CSS gradient instead.

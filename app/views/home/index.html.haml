@@ -1,9 +1,38 @@
-%h2.header Home
-%p.location-link= link_to "Locations", locations_url
-%p.event-link= link_to "Events", events_url
 %br
-%p
-    %strong= link_to "Add your event here!", new_event_url
--if @admin
-    %p
-        %strong= link_to "Add new location!", new_location_url
+.row
+    -if @location_img
+        .col-6.text-center
+            =image_tag(@location_img, :alt => "")
+    -if @event_img
+        .col-6.text-center
+            =image_tag(@event_img, :alt => "")
+
+.card-deck
+    .card
+        =image_tag("/assets/locationsCover.jpeg", :alt => "location header image", :class => "card-img-top")
+        .card-body
+            %h3.card-title Locations
+            %p.card-text Explore new places for hiking, sports, and more
+            = link_to "Explore", locations_url, class: "btn btn-primary btn-block"
+            -if @admin
+                = link_to "Create", new_location_url, class: "btn btn-outline-primary btn-block"
+    .card
+        =image_tag("/assets/eventsCover.jpeg", :alt => "location header image", :class => "card-img-top")
+        .card-body
+            %h3.card-title Events
+            %p.card-text Discover activities
+            = link_to "Explore", events_url, class: "btn btn-primary btn-block"
+            = link_to "Create", new_event_url, class: "btn btn-outline-primary btn-block"
+
+%hr.top-spacing
+%h2 Today's Events
+.todays-events
+    - if @todays_events.empty?
+        %em
+            There are no events today.
+            %br
+            = link_to 'Create your own event', new_event_path
+            or
+            = link_to 'view upcoming events!', events_path
+    - else
+        = render "events/list_events", events: @todays_events

@@ -11,9 +11,11 @@ RSpec.describe LocationsController, type: :controller do
 
   describe "GET #show" do
     it "renders the show template with correct id" do
-      location = Location.create(title: "Triangle Park",
+      location = Location.new(title: "Triangle Park",
                                 description: "Park fit for families",
                                 address: "Triangle Park, Hamilton NY")
+      allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
+      location.save
 
       expect(Location).to receive(:find).with("1") {location}
       get :show, :params => { :id => 1}
@@ -53,7 +55,8 @@ RSpec.describe LocationsController, type: :controller do
           location_params = {title: "Persson Steps",
                 description: "Many steps. Good workout route to classes",
                 address: "13 Oak Dr. Hamilton, NY"}
-          location = Location.new(location_params)
+          allow_any_instance_of(Location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0})
+
           expect {
               post :create, :params => {:location => location_params}
           }.to change(Location, :count).by(1)
@@ -66,6 +69,7 @@ RSpec.describe LocationsController, type: :controller do
               description: "Many steps. Good workout route to classes",
               address: "13 Oak Dr. Hamilton, NY"}
         location = Location.new(location_params)
+        allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
         expect {
             post :create, :params => {:location => location_params}
         }.to change(Location, :count).by(0)
@@ -88,9 +92,12 @@ RSpec.describe LocationsController, type: :controller do
   describe "PUT #update" do
     it "returns http redirect and modifies a location in the db if admin" do
         login_with create(:user, :admin)
-        location = Location.create(title: "Triangle Park",
+        location = Location.new(title: "Triangle Park",
               description: "Family fun for all",
               address: "Hamilton, NY")
+        allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
+        location.save
+
         put :update, :params => {:id => location.id, :location => {:title => "Recreation Center"}}
         location.reload
         expect(location.title).to eq("Recreation Center")
@@ -99,9 +106,12 @@ RSpec.describe LocationsController, type: :controller do
     end
 
     it "returns to the locations after permissions failure to update location" do
-        location = Location.create(title: "Triangle Park",
+        location = Location.new(title: "Triangle Park",
             description: "Family fun for all",
             address: "Hamilton, NY")
+        allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
+        location.save
+
         put :update, :params => {:id => location.id, :location => {:title => "Recreation Center"}}
         location.reload
         expect(location.title).to eq("Triangle Park")
@@ -113,9 +123,12 @@ RSpec.describe LocationsController, type: :controller do
   describe "GET #edit" do
     it "renders the edit template with correct id if admin" do
       login_with create(:user, :admin)
-      location = Location.create(title: "Triangle Park",
-        description: "Family fun for all",
-        address: "Hamilton, NY")
+      location = Location.new(title: "Triangle Park",
+                                description: "Family fun for all",
+                                address: "Hamilton, NY")
+        allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
+        location.save
+
         expect(Location).to receive(:find).with("1") {location}
         get :edit, :params => {:id => 1}
         expect(response).to have_http_status(:success)
@@ -123,10 +136,12 @@ RSpec.describe LocationsController, type: :controller do
       end
 
       it "redirects to locations page after permissions failure" do
-        location = Location.create(title: "Triangle Park",
-          description: "Family fun for all",
-          address: "Hamilton, NY")
-          # expect(Location).to receive(:find).with("1") {location}
+        location = Location.new(title: "Triangle Park",
+                                  description: "Family fun for all",
+                                  address: "Hamilton, NY")
+          allow(location).to receive(:geocode_address).and_return({lat: 50.0, lng: 50.0}) # stub Geokit
+          location.save
+
           get :edit, :params => {:id => 1}
           expect(response).to have_http_status(:redirect)
           expect(response).to redirect_to(locations_path)

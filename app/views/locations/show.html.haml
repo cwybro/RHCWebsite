@@ -1,14 +1,22 @@
-.container
-    -if @location.image.present?
-        .location-image= image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image")
-    %h2.header #{@location.title}
+-if @location.image.present?
+    =image_tag(@location.image.url(:header), :alt => %Q"#{@location.title} header image", :class => 'cover-img')
 
-    %h5 Description:
-    %p #{@location.description}
-    %h5 Address:
-    %p #{@location.address}
+.container-fluid
+    .row.top-spacing
+        .col-6
+            .header #{@location.title}
+            .section-subtitle #{@location.address}
+            %hr
+            .section-title About
+            .section-subtitle #{@location.description}
+        .col-6.text-center
+            -if @google_src
+                %iframe{:width => "100%",
+                    :height => "300", :frameborder => "0",
+                    :style => "border:0",
+                    :src => @google_src}
 
-    -if @admin
-        %p= link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary'
-
-=link_to 'Back to locations', locations_path, class: 'btn btn-secondary'
+    .top-spacing
+        =link_to 'Back to locations', locations_path, class: 'btn btn-outline-primary btn-sm'
+        -if @admin
+            = link_to "Edit location", edit_location_path(@location), class: 'btn btn-primary btn-sm'
