@@ -1,41 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe RecapsController, type: :controller do 
-<<<<<<< ab103f21851de87c53ab2e93cd8c8ac553d3c1ec
-  before(:each) do
-    @user = create(:user)
-    @event = create(:event)
-  end
+  describe "#index and #show suite" do
+    before(:each) do
+      @user = create(:user)
+      @event = create(:event)
+    end
 
-  describe "GET #index" do
-    it "should redirect to the events page, since we can't expose all recaps to the public" do
-      event = create_event
-      get :index, :params => {:event_id => 1}
-      expect(response).to have_http_status(:redirect)
-      expect(response).to redirect_to(events_path)
+    describe "GET #index" do
+      it "should redirect to the events page, since we can't expose all recaps to the public" do
+        get :index, :params => {:event_id => @event.id}
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(events_path)
+      end
+    end
+
+    describe "GET #show" do
+      it "should redirect to the events page, since we can't expose individual recap to the public" do
+        get :show, :params => {:event_id => @event.id, :id => @event.id}
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(events_path)
+      end
     end
   end
 
-  describe "GET #show" do
-    it "should redirect to the events page, since we can't expose individual recap to the public" do
-      event = create_event
-      get :show, :params => {:event_id => 1, :id => 1}
-      expect(response).to have_http_status(:redirect)
-      expect(response).to redirect_to(events_path)
-    end
-  end
-
-  describe "GET #new" do
-    it "should return http success with valid event_id" do
-      get :new, :params => {:event_id => @event.id}
-      expect(response).to have_http_status(:success)
-=======
   describe "#new and #create suite" do
     before(:each) do
       # See factories.rb
       @user = create(:user)
       @event = create(:event)
->>>>>>> Refactored specs for RecapsController
     end
 
     describe "GET #new" do
@@ -70,7 +63,7 @@ RSpec.describe RecapsController, type: :controller do
 
       it "should redirect with invalid recap" do
         expect {
-          post :create, :params => {:event_id => @event.id, :recap => {:attendance => 'acbsdf'}}
+          post :create, :params => {:event_id => 1, :recap => {:attendance => 'acbsdf'}}
         }.to change(Recap, :count).by(0)
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(new_event_recap_path(@event))
@@ -78,7 +71,7 @@ RSpec.describe RecapsController, type: :controller do
     end
   end
 
-  describe "#edit and #update suite" do
+  describe "edit and #update suite" do
     before(:each) do
       # See factories.rb
       @user = create(:user)
