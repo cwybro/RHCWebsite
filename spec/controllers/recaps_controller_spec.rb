@@ -2,6 +2,24 @@ require 'rails_helper'
 
 RSpec.describe RecapsController, type: :controller do 
 
+  describe "GET #index" do
+    it "should redirect to the events page, since we can't expose all recaps to the public" do
+      event = create_event
+      get :index, :params => {:event_id => 1}
+      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(events_path)
+    end
+  end
+
+  describe "GET #show" do
+    it "should redirect to the events page, since we can't expose individual recap to the public" do
+      event = create_event
+      get :show, :params => {:event_id => 1, :id => 1}
+      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(events_path)
+    end
+  end
+
   describe "GET #new" do
     it "should return http success with valid event_id" do
       event = create_event
