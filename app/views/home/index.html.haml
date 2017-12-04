@@ -1,4 +1,21 @@
+
 %br
+#myCarousel.carousel.slide{"data-ride" => "carousel"}
+    .carousel-inner{:role => "listbox"}
+        .carousel-item.active
+            %img.img-responsive.center-block{:alt => "First slide", :src => "/assets/locationsCover.jpeg", :style => "height: 100%"}/
+        .carousel-item
+            %img.d-block.img-fluid{:alt => "Second slide", :src => "/assets/eventsCover.jpeg", :class => "img-responsive"}/
+        .carousel-item
+            %img.d-block.img-fluid{:alt => "Third slide", :src => "/assets/locationsCover.jpeg", :class => "img-responsive"}/
+    %a.carousel-control-prev{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+        %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+        %span.sr-only Previous
+    %a.carousel-control-next{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+        %span.carousel-control-next-icon{"aria-hidden" => "true"}
+        %span.sr-only Next
+
+
 .row
     -if @location_img
         .col-6.text-center
