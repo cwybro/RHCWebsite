@@ -70,7 +70,7 @@ RSpec.describe RecapsController, type: :controller do
 
       it "should redirect with invalid recap" do
         expect {
-          post :create, :params => {:event_id => 1, :recap => {:attendance => 'acbsdf'}}
+          post :create, :params => {:event_id => @event.id, :recap => {:attendance => 'acbsdf'}}
         }.to change(Recap, :count).by(0)
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(new_event_recap_path(@event))
@@ -78,7 +78,7 @@ RSpec.describe RecapsController, type: :controller do
     end
   end
 
-  describe "edit and #update suite" do
+  describe "#edit and #update suite" do
     before(:each) do
       # See factories.rb
       @user = create(:user)

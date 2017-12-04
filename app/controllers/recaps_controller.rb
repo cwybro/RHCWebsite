@@ -65,6 +65,6 @@ class RecapsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recap_params
-      params.require(:recap).permit(:attendance, :description)
+      params.require(:recap).permit(:event_id, :attendance, :description)
     end
 end
