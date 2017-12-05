@@ -74,7 +74,6 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(event_path(@event))
       end
-
     end
 
     describe "PUT #update" do
@@ -115,9 +114,6 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
-
-  
-  
 
   private 
   def event_params(user_id)
