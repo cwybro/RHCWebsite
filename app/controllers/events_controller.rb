@@ -6,11 +6,15 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event= Event.new
+    if current_user.nil?
+      flash[:warning] = "You must be logged in order to create a new event!"
+      redirect_to new_user_session_path and return
+    end
+    @event = Event.new
   end
 
   def create
-    p=Event.new(create_update_params)
+    p = Event.new(create_update_params)
     if p.save
       flash[:success] = "New event \"#{p.title}\" created"
       redirect_to events_path
