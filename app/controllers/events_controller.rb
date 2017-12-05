@@ -25,9 +25,18 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if current_user.nil?
+      flash[:warning] = "You must be logged in order to edit an event!"
+      redirect_to new_user_session_path and return
+    end
     id = params[:id]
     @event = Event.find(id)
+    if !current_user.admin && current_user.id != @event.user_id
+      flash[:warning] = "You can only edit events which belong to you!"
+      redirect_to event_path(@event) and return
+    end
   end
+
   def update
     id = params[:id]
     e = Event.find(id)

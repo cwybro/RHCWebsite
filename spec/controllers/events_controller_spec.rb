@@ -54,12 +54,27 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe "GET #edit" do
-      it "renders the edit template with correct id" do
+      it "redirects to login page if the user is not logged in" do
+        get :edit, :params => {:id => @event.id}
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it "renders the edit template with correct id and correct user permission" do
+        login_with @user
         expect(Event).to receive(:find).with("1") {@event}
         get :edit, :params => {:id => @event.id}
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:edit)
       end
+
+      it "redirects with incorrect user permission" do
+        login_with create(:user, :wrong_user) 
+        get :edit, :params => {:id => @event.id}
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(event_path(@event))
+      end
+
     end
 
     describe "PUT #update" do
