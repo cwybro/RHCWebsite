@@ -1,6 +1,6 @@
 #main
   %h2.header New event
-  %h4 In charge: #{current_user.email}
+  %h4 Person in charge: #{current_user.email}
   =form_for @event, class: 'form', :method => :post do |f|
     =render 'event_form_template', form: f
     .field
