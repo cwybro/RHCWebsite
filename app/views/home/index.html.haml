@@ -3,11 +3,11 @@
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
     .carousel-inner{:role => "listbox"}
         .carousel-item.active
-            %img.img-responsive.center-block{:alt => "First slide", :src => "/assets/locationsCover.jpeg", :style => "height: 100%"}/
+            =image_tag("/assets/locationsCover.jpeg", :alt => "first slide", :class => "img-responsive")
         .carousel-item
-            %img.d-block.img-fluid{:alt => "Second slide", :src => "/assets/eventsCover.jpeg", :class => "img-responsive"}/
+            =image_tag("/assets/eventsCover.jpeg", :alt => "second slide", :class => "img-responsive")
         .carousel-item
-            %img.d-block.img-fluid{:alt => "Third slide", :src => "/assets/locationsCover.jpeg", :class => "img-responsive"}/
+            =image_tag("/assets/locationsCover.jpeg", :alt => "third slide", :class => "img-responsive")
     %a.carousel-control-prev{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.sr-only Previous
