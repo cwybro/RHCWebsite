@@ -3,6 +3,7 @@
     -if @event.image.present?
         .event-image= image_tag(@event.image.url(:header), :alt => %Q"#{@event.title} header image")
     %h2.header #{@event.title}
+    %h4 Person in charge: #{user_email(@event.user_id)}
 
     .card-deck
         .card
