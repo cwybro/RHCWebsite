@@ -9,7 +9,14 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe "GET #new" do
-      it "returns http success" do
+      it "redirects to login page if the user is not logged in" do
+        get :new
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it "returns http success when the user is logged in" do
+        login_with @user 
         get :new
         expect(response).to have_http_status(:success)
       end
