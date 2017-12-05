@@ -32,7 +32,7 @@ class EventsController < ApplicationController
     id = params[:id]
     @event = Event.find(id)
     if !current_user.admin && current_user.id != @event.user_id
-      flash[:warning] = "You can only edit events which belong to you!"
+      flash[:warning] = "You don't have sufficient permission to edit this!"
       redirect_to event_path(@event) and return
     end
   end
