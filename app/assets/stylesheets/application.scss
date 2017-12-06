@@ -181,20 +181,25 @@ body {
   margin-top: 20px;
 }
 
-.carousel {
-    width: 100%;
-    height: 400px;
-    background-size:auto 100%;
-}
-
-
-
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
+  padding-bottom: 40px;
   width: 100%;
   height: 400px;
+}
+
+.first-slide-label {
+    color: white;
+}
+
+.second-slide-label {
+    color:white;
+}
+
+.third-slide-label {
+    color:white;
 }
