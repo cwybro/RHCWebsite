@@ -42,3 +42,19 @@ Recap.delete_all
 
 Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
 Event.last.recap = Recap.new(attendance: 10, description: "It was fun!")
+
+
+Tag.delete_all
+Tag.create(name: "dog-friendly")
+Tag.create(name: "kid-friendly")
+Tag.create(name: "hiking")
+Tag.create(name: "swimming")
+Tag.create(name: "running")
+
+# Tagging.delete_all
+# Tagging.create(tag_id: Tag.first.id,
+#               event_id: Event.first.id)
+# Tagging.create(tag_id: Tag.last.id,
+#               event_id: Event.first.id)
+# Tagging.create(tag_id: Tag.first.id,
+#               event_id: Event.last.id)
