@@ -2,7 +2,8 @@ require 'date'
 
 class Event < ApplicationRecord
     has_one :recap, :dependent => :destroy
-    validates :title, :description, :address, :datetime, presence: true
+    belongs_to :user
+    validates :title, :description, :address, :datetime, :user_id, presence: true
     validate :timeliness_of_datetime
 
     scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }

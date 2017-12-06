@@ -1,4 +1,6 @@
 .field.form-group
+  =form.hidden_field :user_id, :value => current_user.id
+  
   =form.label :title, "Title"
   =form.text_field :title, required: :true, class: 'form-control'
 
