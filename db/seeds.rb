@@ -50,6 +50,7 @@ Event.create(user_id: user_id_1,
             description: "Come run with us!",
             address: "Colgate University")
 
+
 Recap.delete_all
 
 Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
