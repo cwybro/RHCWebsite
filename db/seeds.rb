@@ -51,10 +51,10 @@ Tag.create(name: "hiking")
 Tag.create(name: "swimming")
 Tag.create(name: "running")
 
-# Tagging.delete_all
-# Tagging.create(tag_id: Tag.first.id,
-#               event_id: Event.first.id)
-# Tagging.create(tag_id: Tag.last.id,
-#               event_id: Event.first.id)
-# Tagging.create(tag_id: Tag.first.id,
-#               event_id: Event.last.id)
+Tagging.delete_all
+Tagging.create(tag_id: Tag.first.id,
+              event_id: Event.first.id)
+Tagging.create(tag_id: Tag.last.id,
+              event_id: Event.first.id)
+Tagging.create(tag_id: Tag.first.id,
+              event_id: Event.last.id)
