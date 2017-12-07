@@ -26,7 +26,7 @@ class Event < ApplicationRecord
     end
 
     def days_until(ref)
-      ((self.datetime - ref) / 3600.0 / 24.0).round
+      ((self.datetime - ref) / 3600.0 / 24.0).round unless !ref
     end
 
     # Returns the last two comma-seperated items in the address field, excluding zip code.
