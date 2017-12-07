@@ -10,7 +10,7 @@ class Event < ApplicationRecord
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
     has_attached_file :image,
-    :styles=> {:header => "800x400#", :thumb => "100x100#" }
+    :styles=> {:header => "800x400#", :thumb => "100x100#", :grid => "300x200#" }
     # no default, use CSS gradient instead.
 
     validates_attachment :image,
