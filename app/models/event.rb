@@ -18,11 +18,15 @@ class Event < ApplicationRecord
 
 
     def date
-        self.datetime.to_date
+      self.datetime.to_date
     end
 
     def readable_date
       self.date.strftime("%a, %d %B %Y")
+    end
+
+    def days_until(ref)
+      ((self.datetime - ref) / 3600.0 / 24.0).round
     end
 
     # Returns the last two comma-seperated items in the address field, excluding zip code.
