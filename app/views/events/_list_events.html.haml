@@ -6,7 +6,7 @@
           - if event.days_until(DateTime.now) > 20
             - date_detail = event.date.to_formatted_s(:short)
           - else
-            - date_detail = pluralize(event.days_until(DateTime.now), "day")
+            - date_detail = event.days_until(DateTime.now) < 1 ? "Today" : pluralize(event.days_until(DateTime.now), "day")
           %h4.card-header.text-center= date_detail
           -if event.image.present?
             = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
