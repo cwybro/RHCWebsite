@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
   def new
     if current_user.nil?
-      flash[:warning] = "You must be logged in order to create a new event!"
+      flash[:warning] = "Log in first to create a new event!"
       redirect_to new_user_session_path and return
     end
     @event = Event.new
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
 
   def edit
     if current_user.nil?
-      flash[:warning] = "You must be logged in order to edit an event!"
+      flash[:warning] = "Log in first to edit an event!"
       redirect_to new_user_session_path and return
     end
     id = params[:id]
@@ -56,6 +56,7 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
       days = @event.days_until(DateTime.now)
       @now = days < 1 ? "Today" : "#{days} days"
+      @valid_permission = !current_user.nil? && (current_user.admin || current_user.id == @event.user_id)
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, event not found"
       redirect_to events_path and return

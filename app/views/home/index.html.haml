@@ -53,7 +53,8 @@
             %h3.card-title Events
             %p.card-text Discover activities
             = link_to "Explore", events_url, class: "btn btn-primary btn-block"
-            = link_to "Create", new_event_url, class: "btn btn-outline-primary btn-block"
+            -if !current_user.nil?
+                = link_to "Create", new_event_url, class: "btn btn-outline-primary btn-block"
 
 %hr.top-spacing
 %h2 Today's Events
