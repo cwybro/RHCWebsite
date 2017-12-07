@@ -1,7 +1,7 @@
 %h2 Upcoming Events
 =form_tag events_path, :class => 'filter-form', :method => :get do
-  =label_tag "tag_filter", "Filter by tags:"
-  =select_tag :tag, options_for_select(@all_tags, :multiple =>true), include_blank: true, class: "form-control col-xs-3"
+  =label_tag "tag_filter", "Filter by tag:"
+  =select_tag :tag, options_for_select(@all_tags), include_blank: true, class: "form-control col-xs-3"
   =submit_tag "Refine the list of events", class: 'btn btn-primary filter-btn'
   = link_to "Clear tags", events_path, class: 'btn btn-primary filter-btn'
 
