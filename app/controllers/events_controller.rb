@@ -54,7 +54,8 @@ class EventsController < ApplicationController
   def show
     begin
       @event = Event.find(params[:id])
-      @now = "#{@event.days_until(DateTime.now)} days"
+      days = @event.days_until(DateTime.now)
+      @now = days < 1 ? "Today" : "#{days} days"
       @valid_permission = !current_user.nil? && (current_user.admin || current_user.id == @event.user_id)
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, event not found"
