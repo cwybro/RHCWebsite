@@ -3,7 +3,7 @@
     - events.each do |event|
       .col-md-6.col-lg-4.py-2
         .card.h-100
-          %h4.card-header.text-center #{event.days_until(@now)} days
+          %h5.card-header.text-center #{event.days_until(@now)} days
           -if event.image.present?
             = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
           .card-body
