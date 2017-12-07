@@ -11,7 +11,7 @@
           - last_date = event.date
           %h3.card-header #{event.readable_date}
         -if event.image.present?
-          = image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image", :class => "card-img-top img-top-sm")
+          = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
         .card-body
           %h4.card-title #{event.title}
           %p.text-muted #{event.area}
