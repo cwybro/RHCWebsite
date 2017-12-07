@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, :except => [:show, :index]
 
   def index
-    if(params[:tag])
+    if(params[:tag] && Tag.exists?(params[:tag]))
       @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
     else
       @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
