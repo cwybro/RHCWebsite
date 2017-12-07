@@ -1,18 +1,12 @@
 .container
   .row
-  - last_date = nil
-  - events.each do |event|
-    - if last_date != event.date
-      - last_date = event.date
-      %h3.pt-2 #{event.readable_date}
-    .col-md-6.col-lg-4.py-2
-      .card.h-100
-        - if last_date != event.date
-          - last_date = event.date
-          %h3.card-header #{event.readable_date}
-        -if event.image.present?
-          = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
-        .card-body
-          %h4.card-title #{event.title}
-          %p.text-muted #{event.area}
-        = link_to "Details", event_path(event), class: "card-footer btn btn-outline-primary btn-sm"
+    - events.each do |event|
+      .col-md-6.col-lg-4.py-2
+        .card.h-100
+          %h4.card-header.text-center #{event.days_until(@now)} days
+          -if event.image.present?
+            = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
+          .card-body
+            %h4.card-title #{event.title}
+            %p.text-muted #{event.area}
+          = link_to "Details", event_path(event), class: "card-footer btn btn-outline-primary btn-sm"

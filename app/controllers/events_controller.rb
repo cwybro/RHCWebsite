@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+    @now = DateTime.now
   end
 
   def new
@@ -53,6 +54,7 @@ class EventsController < ApplicationController
   def show
     begin
       @event = Event.find(params[:id])
+      @now = "#{@event.days_until(DateTime.now)} days"
     rescue ActiveRecord::RecordNotFound
       flash[:warning] = "Invalid id, event not found"
       redirect_to events_path and return
