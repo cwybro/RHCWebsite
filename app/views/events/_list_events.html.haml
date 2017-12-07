@@ -1,10 +1,18 @@
-
-.event-list
+.container
+  .row
   - last_date = nil
   - events.each do |event|
     - if last_date != event.date
       - last_date = event.date
-      %h3.date= event.readable_date
-    -if event.image.present?
-      .event-image= image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image")
-    %p.subtitle.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
+      %h3.pt-2 #{event.readable_date}
+    .col-md-6.col-lg-4.py-2
+      .card.h-100
+        - if last_date != event.date
+          - last_date = event.date
+          %h3.card-header #{event.readable_date}
+        -if event.image.present?
+          = image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image", :class => "card-img-top img-top-sm")
+        .card-body
+          %h4.card-title #{event.title}
+          %p.text-muted #{event.area}
+        = link_to "Details", event_path(event), class: "card-footer btn btn-outline-primary btn-sm"
