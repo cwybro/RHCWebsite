@@ -3,9 +3,11 @@
     - events.each do |event|
       .col-md-6.col-lg-4.py-2
         .card.h-100
-          - if event.days_until(@now)
-            - days_text = event.days_until(@now) < 1 ? "Today" : "#{event.days_until(@now)} days"
-            %h5.card-header.text-center #{days_text}
+          - if event.days_until(DateTime.now) > 20
+            - date_detail = event.date.to_formatted_s(:short)
+          - else
+            - date_detail = pluralize(event.days_until(DateTime.now), "day")
+          %h4.card-header.text-center= date_detail
           -if event.image.present?
             = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
           .card-body
