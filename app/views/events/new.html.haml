@@ -2,7 +2,7 @@
   %h2.header New event
   %h4 Person in charge: #{current_user.email}
   =form_for @event, class: 'form', :method => :post do |f|
-    =render 'event_form_template', f: f
+    =render 'event_form_template', form: f
     .field
       =link_to "Back to Events Page", events_path, class: 'btn btn-outline-primary btn-sm'
       =f.submit "Create Event", class: 'btn btn-primary btn-sm'

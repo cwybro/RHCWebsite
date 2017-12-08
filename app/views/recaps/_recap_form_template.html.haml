@@ -6,12 +6,15 @@
         - @erecap.errors.full_messages.each do |message|
           %li= message
   .field.form-group
-    =f.hidden_field :is_reviewed, required: :true, :value => false
-  .field.form-group
     =f.label :attendance
     =f.number_field :attendance
   .field.form-group
     =f.label :description
     =f.text_area :description
+  -if current_user.try(:admin?)
+    .field.form-group
+      =f.label :is_reviewed, "Is the event reviewed?"
+      =f.check_box :is_reviewed, :checked => false, required: false
+    
   .actions
     =f.submit 'Save', class: 'btn btn-primary btn-sm'

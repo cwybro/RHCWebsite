@@ -1,28 +1,32 @@
 .field.form-group
-  =form.hidden_field :user_id, required: :true, :value => @event.nil? ? current_user.id : @event.user_id
+  =form.hidden_field :user_id, required: true, :value => @event.user_id.nil? ? current_user.id : @event.user_id
 
 .field.form-group
   =form.label :title, "Title"
-  =form.text_field :title, required: :true, class: 'form-control'
+  =form.text_field :title, required: true, class: 'form-control'
 
 .field.form-group
   =form.label :description, "Description"
-  =form.text_field :description, required: :true, class: 'form-control'
+  =form.text_field :description, required: true, class: 'form-control'
 
 .field.form-group
   =form.label :address, "Address"
-  =form.text_field :address, required: :true, class: 'form-control'
+  =form.text_field :address, required: true, class: 'form-control'
 
 .field.form-group
   = form.label :datetime, "Date and Time"
-  = form.datetime_field :datetime, required: :true, class: 'form-control'
+  = form.datetime_field :datetime, required: true, class: 'form-control'
 
 .field.form-group
   = form.label :image, "Event Image"
-  = form.file_field :image, required: :false
+  = form.file_field :image, required: false
 
 -if current_user.admin
   .field.form-group
     = form.label :is_reviewed, "Is the event reviewed?"
-    = form.check_box :is_reviewed, required: :true
+    = form.check_box :is_reviewed, :checked => false, required: false
+
+-else
+  .field.form-group
+    = form.hidden_field :is_reviewed, :value => false, required: false
     
