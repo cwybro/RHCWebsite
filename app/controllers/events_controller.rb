@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  include EventsHelper
   # before_action :authenticate_user!, :except => [:show, :index]
 
   def index
@@ -54,6 +55,7 @@ class EventsController < ApplicationController
   def show
     begin
       @event = Event.find(params[:id])
+      @og = get_opengraph_obj(@event)
       rescue ActiveRecord::RecordNotFound
           flash[:warning] = "Invalid id, event not found"
           redirect_to events_path and return

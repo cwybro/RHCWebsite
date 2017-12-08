@@ -43,6 +43,7 @@ class LocationsController < ApplicationController
   def show
     begin
       @location = Location.find(params[:id])
+      @og = get_opengraph_obj(@location)
       @admin = current_user.try(:admin?)
 
       api_key = ENV['GOOGLE_API_KEY']
