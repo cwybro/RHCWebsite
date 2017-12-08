@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "index page", type: :feature do
   before :each do
+
     a= Location.new(:title => "1", :description => "test", :address => "Utica, NY")
     a.lat= 7.698744
     a.lng= -0.593262
@@ -25,7 +26,6 @@ RSpec.describe "index page", type: :feature do
     d.lng= -5.559082
     allow(d).to receive(:geocode_address).and_return({lat: 35.807790, lng: -5.559082})
     d.save
-
     visit "/locations"
   end
 
@@ -45,7 +45,7 @@ RSpec.describe "index page", type: :feature do
     fill_in "miles of", :with => ""
     click_button "Refine the list of locations"
     names = page.all(".card-title")
-    # page.all(".cell-title").each { |x| names << x.text }
+
     expect(names.length).to eq(4)
   end
 end
