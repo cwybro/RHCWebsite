@@ -36,8 +36,11 @@ class Event < ApplicationRecord
           "Today"
         when 1...2
           "Tomorrow"
-        else
+        when 2...21
           "#{days.round} days"
+        else
+          month = self.date.strftime("%B")
+          "#{month} #{self.date.day}"
         end
       end
     end
