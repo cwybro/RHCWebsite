@@ -9,12 +9,14 @@ class EventsController < ApplicationController
         @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
       else
         @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
-                                                          .where('is_reviewd = ?', true)
+                                                          .where('is_reviewed = ?', true)
+      end
       @current_tag= Tag.find_by_id(params[:tag])
     else
       if current_user.try(:admin?)
         @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
       else
+        byebug
         @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
                                 .where('is_reviewed = ?', true)
       end

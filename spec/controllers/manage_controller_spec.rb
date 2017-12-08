@@ -2,11 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ManageController, type: :controller do
 
-  before(:each) do
-    @user = create(:user)
-  end
-
   describe "GET #index" do
+
     before(:each) do
      # see factories.rb
      @user = create(:user)
