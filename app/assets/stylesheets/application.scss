@@ -35,6 +35,11 @@ h3, h4 {
     font-weight: bold;
 }
 
+h5 {
+  color: $text-color;
+  font-weight: bold;
+}
+
 p {
     color: $text-color-light;
 }
@@ -202,4 +207,16 @@ body {
 
 .third-slide-label {
     color:white;
+}
+
+.img-top-sm {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.cover-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
 }

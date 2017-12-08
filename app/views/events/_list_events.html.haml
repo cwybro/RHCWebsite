@@ -1,10 +1,16 @@
-
-.event-list
-  - last_date = nil
-  - events.each do |event|
-    - if last_date != event.date
-      - last_date = event.date
-      %h3.date= event.readable_date
-    -if event.image.present?
-      .event-image= image_tag(event.image.url(:thumb), :alt => %Q"#{event.title} image")
-    %p.subtitle.event-title= link_to "#{event.title} - #{event.area}", event_path(event)
+.container
+  .row
+    - events.each do |event|
+      .col-md-6.col-lg-4.py-2
+        .card.h-100
+          - if event.days_until(DateTime.now) > 20
+            - date_detail = event.date.to_formatted_s(:short)
+          - else
+            - date_detail = event.days_until(DateTime.now) < 1 ? "Today" : pluralize(event.days_until(DateTime.now), "day")
+          %h4.card-header.text-center= date_detail
+          -if event.image.present?
+            = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
+          .card-body
+            %h4.card-title #{event.title}
+            %p.text-muted #{event.area}
+          = link_to "Details", event_path(event), class: "card-footer btn btn-outline-primary btn-sm"

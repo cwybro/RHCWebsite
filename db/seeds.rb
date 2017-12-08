@@ -10,6 +10,7 @@ User.delete_all
 
 User.create(email: 'qvu@colgate.edu', password: 'rhc123', admin: true)
 User.create(email: 'vudinhquan124@gmail.com', password: '123rhc')
+User.create(email: 'admin@mco.com', password: 'mcoF2017', admin: true)
 
 Location.delete_all
 

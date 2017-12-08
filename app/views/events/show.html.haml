@@ -1,7 +1,7 @@
 
 .container
     -if @event.image.present?
-        .event-image= image_tag(@event.image.url(:header), :alt => %Q"#{@event.title} header image")
+        .event-image= image_tag(@event.image.url(:header), :alt => %Q"#{@event.title} header image", :class => 'cover-img')
     %h2.header #{@event.title}
     %h4 Person in charge: #{user_email(@event.user_id)}
 
@@ -15,23 +15,25 @@
             .card-body
                 %h4.card-title When
                 %p.card-text #{@event.readable_date}
-
+                %p.text-muted #{pluralize(@days, "day")}
 
         .card
             .card-body
                 %h4.card-title Location
                 %p.card-text #{@event.address}
-
-    .top-spacing= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
+    -if @valid_permission
+        .top-spacing= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
     %hr
 
-    - if !@event.recap.nil?
+    -if !@event.recap.nil?
         .jumbotron.jumbotron-fluid.text-center
             .container
                 %h1.display-3 #{@event.recap.attendance} attendees
                 %p.lead #{@event.recap.description}
-        =link_to 'Edit recap', edit_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
-    - else
-        =link_to 'Add recap', new_event_recap_url(@event), class: 'btn btn-primary btn-sm'
+        -if @valid_permission
+            =link_to 'Edit recap', edit_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
+    -else
+        -if @valid_permission
+            =link_to 'Add recap', new_event_recap_url(@event), class: 'btn btn-primary btn-sm'
 
 .top-spacing= link_to 'Back to list of events', events_url, class: 'btn btn-outline-primary btn-sm'
