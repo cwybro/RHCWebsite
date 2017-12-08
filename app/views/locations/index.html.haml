@@ -17,10 +17,10 @@
         .card.h-100
           -if loc.image.present?
             = image_tag(loc.image.url(:grid), :alt => %Q"Picture of #{loc.title}", :class =>"card-img-top")
-            .card-body
-              %h4.card-title #{loc.title}
-              %p.text-muted #{loc.address}
-            = link_to "Details", location_path(loc), class: "card-footer btn btn-outline-primary btn-sm"
+          .card-body
+            %h4.card-title #{loc.title}
+            %p.text-muted #{loc.address}
+          = link_to "Details", location_path(loc), class: "card-footer btn btn-outline-primary btn-sm"
 
 %br
   = link_to "Back to Home", root_url, class: 'btn btn-outline-primary btn-sm home-link'
