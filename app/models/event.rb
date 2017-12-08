@@ -2,14 +2,15 @@ require 'date'
 
 class Event < ApplicationRecord
     has_one :recap, :dependent => :destroy
-    validates :title, :description, :address, :datetime, presence: true
+    belongs_to :user
+    validates :title, :description, :address, :datetime, :user_id, presence: true
     validate :timeliness_of_datetime
 
     scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
     has_attached_file :image,
-    :styles=> {:header => "800x400#", :thumb => "100x100#" }
+    :styles=> {:header => "800x400#", :thumb => "100x100#", :grid => "300x200#" }
     # no default, use CSS gradient instead.
 
     validates_attachment :image,
@@ -17,11 +18,15 @@ class Event < ApplicationRecord
 
 
     def date
-        self.datetime.to_date
+      self.datetime.to_date
     end
 
     def readable_date
       self.date.strftime("%a, %d %B %Y")
+    end
+
+    def days_until(ref)
+      ((self.datetime - ref) / 3600.0 / 24.0).round unless !ref
     end
 
     # Returns the last two comma-seperated items in the address field, excluding zip code.
