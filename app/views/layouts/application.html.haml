@@ -26,6 +26,7 @@
           %li.nav-item.my-2= link_to "Events", events_path, class: "nav-link"
         %ul.navbar-nav.ml-auto
           - if user_signed_in?
+            %li.nav-item.my-2= link_to "My account", manage_url, class: "nav-link"
             %li.nav-item.my-2= link_to "Logout from #{current_user.email}", destroy_user_session_path, method: :delete, class: "nav-link"
           - else
             %li.nav-item.my-2= link_to "Login", new_user_session_path, class: "nav-link"
