@@ -45,6 +45,10 @@ class Event < ApplicationRecord
         self.datetime.strftime('%l.%M %p')
     end
 
+    def self.tagged_with(id)
+      Tag.find_by_id(id).events
+    end
+
     private
 
     def timeliness_of_datetime
