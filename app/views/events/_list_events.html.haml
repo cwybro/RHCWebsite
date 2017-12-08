@@ -11,6 +11,6 @@
           -if event.image.present?
             = image_tag(event.image.url(:grid), :alt => %Q"#{event.title} image", :class => "card-img-top")
           .card-body
-            %h4.card-title #{event.title}
+            %h4.card-title.event-title #{event.title}
             %p.text-muted #{event.area}
           = link_to "Details", event_path(event), class: "card-footer btn btn-outline-primary btn-sm"
