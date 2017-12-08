@@ -12,7 +12,7 @@ class RecapsController < ApplicationController
 
   def new
     if current_user.nil?
-      flash[:warning] = "You must be logged in order to add a recap!"
+      flash[:warning] = "Log in first to add a recap!"
       redirect_to new_user_session_path and return
     end
     if !current_user.admin && current_user.id != @event.user_id
@@ -24,7 +24,7 @@ class RecapsController < ApplicationController
 
   def edit
     if current_user.nil?
-      flash[:warning] = "You must be logged in order to edit a recap!"
+      flash[:warning] = "Log in first to edit a recap!"
       redirect_to new_user_session_path and return
     end
 
@@ -47,6 +47,10 @@ class RecapsController < ApplicationController
   end
 
   def update
+    if !current_user.try(:admin?) && !params[:is_reviewed].nil?
+      flash[:warning] = "You don't have sufficient permission to edit this!"
+      redirect_to event_path(@event) and return
+    end
     if @recap.update(recap_params)
       flash[:notice] = 'Event recap was successfully updated!'
       @event.recap = @recap

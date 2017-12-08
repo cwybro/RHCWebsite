@@ -29,6 +29,8 @@
         -if current_user.try(:admin) || @event.recap.is_reviewed
             .jumbotron.jumbotron-fluid.text-center
                 .container
+                    -if !@event.recap.is_reviewed
+                        %p.text-danger NEEDS REVISION
                     %h1.display-3 #{@event.recap.attendance} attendees
                     %p.lead #{@event.recap.description}
         -if @valid_permission

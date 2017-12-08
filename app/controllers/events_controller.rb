@@ -34,7 +34,6 @@ class EventsController < ApplicationController
 
   def create
     p = Event.new(create_update_params)
-    byebug
     if p.save
       flash[:success] = "New event \"#{p.title}\" created"
       redirect_to events_path
