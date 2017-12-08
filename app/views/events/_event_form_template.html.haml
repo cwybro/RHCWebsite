@@ -2,9 +2,6 @@
   =form.hidden_field :user_id, required: :true, :value => current_user.id
 
 .field.form-group
-  =form.hidden_field :is_reviewed, required: :true, :value => false
-
-.field.form-group
   =form.label :title, "Title"
   =form.text_field :title, required: :true, class: 'form-control'
 
@@ -23,3 +20,12 @@
 .field.form-group
   = form.label :image, "Event Image"
   = form.file_field :image, required: :false
+
+-if current_user.admin
+  .field.form-group
+    = form.label :is_reviewed, "Is the event reviewed?"
+    = form.check_box :is_reviewed, required: :true
+    
+.field
+    = link_to 'Back', event_path(@event), class: 'btn btn-outline-primary btn-sm'
+    = f.submit 'Save', class: 'btn btn-primary btn-sm'

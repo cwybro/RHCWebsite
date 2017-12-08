@@ -26,10 +26,11 @@
     %hr
 
     -if !@event.recap.nil?
-        .jumbotron.jumbotron-fluid.text-center
-            .container
-                %h1.display-3 #{@event.recap.attendance} attendees
-                %p.lead #{@event.recap.description}
+        -if current_user.try(:admin) || @event.recap.is_reviewed
+            .jumbotron.jumbotron-fluid.text-center
+                .container
+                    %h1.display-3 #{@event.recap.attendance} attendees
+                    %p.lead #{@event.recap.description}
         -if @valid_permission
             =link_to 'Edit recap', edit_event_recap_url(@event), class: 'btn btn-outline-primary btn-sm'
     -else
