@@ -1,5 +1,5 @@
 .field.form-group
-  =form.hidden_field :user_id, required: :true, :value => current_user.id
+  =form.hidden_field :user_id, required: :true, :value => @event.nil? ? current_user.id : @event.user_id
 
 .field.form-group
   =form.label :title, "Title"
@@ -26,6 +26,3 @@
     = form.label :is_reviewed, "Is the event reviewed?"
     = form.check_box :is_reviewed, required: :true
     
-.field
-    = link_to 'Back', event_path(@event), class: 'btn btn-outline-primary btn-sm'
-    = f.submit 'Save', class: 'btn btn-primary btn-sm'
