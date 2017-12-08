@@ -8,9 +8,8 @@
 
 User.delete_all
 
-User.create(email: 'qvu@colgate.edu', password: 'rhc123', admin: true)
-User.create(email: 'vudinhquan124@gmail.com', password: '123rhc')
 User.create(email: 'admin@mco.com', password: 'mcoF2017', admin: true)
+User.create(email: 'user@mco.com', password: 'mcoF2017')
 
 Location.delete_all
 
@@ -33,31 +32,30 @@ user_id_1 = User.first.id
 user_id_2 = User.last.id
 
 Event.create(user_id: user_id_1,
+            is_reviewed: true,
             title: "5k christmas charity run",
             datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
             description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
             address: "Trudy Fitness Center, Hamilton")
 Event.create(user_id: user_id_1,
+            is_reviewed: false,
             title: "Slide down the hill",
             datetime: DateTime.iso8601('2018-01-01T04:05:06-05:00'),  # require 'date'
             description: "Rolling down the hill since 1819",
             address: "Colgate University")
 Event.create(user_id: user_id_2,
+            is_reviewed: false,
             title: "Slide down the other hill",
             datetime: DateTime.iso8601('2018-01-01T04:10:06-05:00'),  # same date, different time as above.
             description: "Rolling down the hill since 1819",
             address: "Colgate University")
 Event.create(user_id: user_id_1,
+            is_reviewed: true,
             title: "10k around campus",
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
             description: "Come run with us!",
             address: "Colgate University")
 
-
-Recap.delete_all
-
-Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
-Event.last.recap = Recap.new(attendance: 10, description: "It was fun!")
 
 
 Tag.delete_all
@@ -74,3 +72,13 @@ Tagging.create(tag_id: Tag.last.id,
               event_id: Event.first.id)
 Tagging.create(tag_id: Tag.first.id,
               event_id: Event.last.id)
+
+Recap.delete_all
+Event.first.recap = Recap.new(event_id: Event.first.id,
+                              is_reviewed: true,
+                              attendance: 500, 
+                              description: "It was hugely successful!")
+Event.last.recap = Recap.new(event_id: Event.last.id,
+                              is_reviewed: false,
+                              attendance: 10, 
+                              description: "It was fun!")

@@ -5,12 +5,13 @@
       %ul
         - @erecap.errors.full_messages.each do |message|
           %li= message
-
-  .field
-    = f.label :attendance
-    = f.number_field :attendance
-  .field
-    = f.label :description
-    = f.text_area :description
+  .field.form-group
+    =f.hidden_field :is_reviewed, required: :true, :value => false
+  .field.form-group
+    =f.label :attendance
+    =f.number_field :attendance
+  .field.form-group
+    =f.label :description
+    =f.text_area :description
   .actions
-    = f.submit 'Save', class: 'btn btn-primary btn-sm'
+    =f.submit 'Save', class: 'btn btn-primary btn-sm'

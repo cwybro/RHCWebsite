@@ -1,6 +1,10 @@
 .field.form-group
-  =form.hidden_field :user_id, :value => current_user.id
-  
+  =form.hidden_field :user_id, required: :true, :value => current_user.id
+
+.field.form-group
+  =form.hidden_field :is_reviewed, required: :true, :value => false
+
+.field.form-group
   =form.label :title, "Title"
   =form.text_field :title, required: :true, class: 'form-control'
 

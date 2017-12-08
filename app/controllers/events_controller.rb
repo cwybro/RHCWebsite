@@ -75,6 +75,6 @@ class EventsController < ApplicationController
 
   private
   def create_update_params
-    params.require(:event).permit(:user_id, :title, :description, :address, :datetime, :image)
+    params.require(:event).permit(:user_id, :is_reviewed, :title, :description, :address, :datetime, :image)
   end
 end
