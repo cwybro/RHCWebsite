@@ -2,26 +2,31 @@
 %br
 #myCarousel.carousel.slide{"data-ride" => "carousel"}
     %ol.carousel-indicators
-        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
-        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
-        %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+        - i = 0
+        - @featured_events.each do |feature|
+            - if i == 0
+                %li.active{"data-slide-to" => i, "data-target" => "#myCarousel"}
+            - else
+                %li{"data-slide-to" => i, "data-target" => "#myCarousel"}
+            - i = i + 1
+
 
     .carousel-inner{:role => "listbox"}
-        .carousel-item.active
-            =image_tag("/assets/trudyfitnesscenter.jpg", :alt => "first slide", :class => "img-responsive")
-            .carousel-caption.d-none.d-md-block
-                %h3.first-slide-label first Slide Label
-                %p.first-slide-description description
-        .carousel-item
-            =image_tag("/assets/slidingdown.jpg", :alt => "second slide", :class => "img-responsive")
-            .carousel-caption.d-none.d-md-block
-                %h3.second-slide-label Second Slide Label
-                %p.second-slide-description description
-        .carousel-item
-            =image_tag("/assets/colgatecampusrun.jpg", :alt => "third slide", :class => "img-responsive")
-            .carousel-caption.d-none.d-md-block
-                %h3.third-slide-label third Slide Label
-                %p.third-slide-description description
+        - i = 0
+        - @featured_events.each do |feature|
+            - if i == 0
+                .carousel-item.active
+                    =image_tag(feature.image.url, :alt => feature.title, :class => "img-responsive")
+                    .carousel-caption.d-none.d-md-block
+                        %h3.first-slide-label= feature.title
+                        %p.first-slide-description= truncate(feature.descrition, 100)
+            - else
+                .carousel-item
+                    =image_tag(feature.image.url, :alt => feature.title, :class => "img-responsive")
+                    .carousel-caption.d-none.d-md-block
+                        %h3.second-slide-label= feature.title
+                        %p.second-slide-description= truncate(feature.description)
+            - i = i + 1
     %a.carousel-control-prev{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
         %span.sr-only Previous
