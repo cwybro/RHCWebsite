@@ -16,7 +16,6 @@ class EventsController < ApplicationController
       if current_user.try(:admin?)
         @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
       else
-        byebug
         @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
                                 .where('is_reviewed = ?', true)
       end
