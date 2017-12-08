@@ -47,13 +47,6 @@ RSpec.describe "index page", type: :feature do
     click_button "Refine the list of events"
     names = page.all(".event-title")
     expect(names.length).to eq(1)
-
-
-    # visit "/locations"
-    # names = []
-    # page.all(".cell-title").each { |x| names << x.text }
-    # expect(names.length).to eq(1)
-    # visit "/locations"
   end
 end
 
