@@ -119,6 +119,7 @@ RSpec.describe EventsController, type: :controller do
   def event_params(user_id)
     return {
       user_id: user_id,
+      is_reviewed: false,
       title: "5k christmas charity run",
       datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
       description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",

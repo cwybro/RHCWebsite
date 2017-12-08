@@ -16,6 +16,7 @@ FactoryBot.define do
   factory :event, :class => 'Event' do
     id 1
     user_id 1
+    is_reviewed false
     title "5k christmas charity run"
     datetime DateTime.iso8601('2017-12-25T04:05:06-05:00')
     description "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council"
@@ -25,6 +26,7 @@ FactoryBot.define do
   factory :recap, :class => 'Recap' do
     id 1
     event_id 1
+    is_reviewed false
     attendance 100
     description 'It was a huge party!'
   end
