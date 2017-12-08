@@ -52,7 +52,17 @@ Event.create(user_id: user_id_1,
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
             description: "Come run with us!",
             address: "Colgate University")
+Event.create(user_id: user_id_1,
+            title: "Brisk walk around campus",
+            datetime: DateTime.now + 0.1,  # require 'date'
+            description: "Come run with us!",
+            address: "Colgate University")
 
+Event.create(user_id: user_id_1,
+            title: "Colgate Marathon",
+            datetime: DateTime.now - 1,  # require 'date'
+            description: "Hosted by Professor Mulry -- come run!",
+            address: "Colgate University")
 
 Recap.delete_all
 
