@@ -7,6 +7,8 @@ class Event < ApplicationRecord
     validates :is_reviewed, inclusion: { in: [ true, false ] }
     validate :timeliness_of_datetime
     scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }
+    scope :future, -> { where('datetime > ?', DateTime.current().beginning_of_day) }
+    scope :featured_events, -> {where("featured == true")}
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
     has_attached_file :image,
