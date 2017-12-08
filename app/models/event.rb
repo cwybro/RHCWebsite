@@ -26,7 +26,20 @@ class Event < ApplicationRecord
     end
 
     def days_until(ref)
-      ((self.datetime - ref) / 3600.0 / 24.0).round unless !ref
+      if ref
+        days = ((self.datetime - ref) / 3600.0 / 24.0)
+
+        case days
+        when -(1.0/0)...0
+          "Passed"
+        when 0...1
+          "Today"
+        when 1...2
+          "Tomorrow"
+        else
+          "#{days.round} days"
+        end
+      end
     end
 
     # Returns the last two comma-seperated items in the address field, excluding zip code.
@@ -50,5 +63,4 @@ class Event < ApplicationRecord
     def timeliness_of_datetime
         errors.add(:datetime, 'must be a valid datetime object') if ((DateTime.parse(datetime.to_s) rescue ArgumentError) == ArgumentError)
     end
-
 end

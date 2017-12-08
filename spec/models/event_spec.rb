@@ -107,25 +107,23 @@ RSpec.describe Event, type: :model do
       	expect(num_events_today - Event.today.length).to eq(1)
     end
 
-    it "should return positive number of days until event if upcoming" do
+    it "should return appropriate date string for passed and upcoming events" do
       ref = DateTime.now
       ev = Event.create!(user_id: 1,
                       title: "5k chirstmas charity run",
-                      datetime: ref+1,
+                      datetime: ref,
                       description: "Come and run the christmas 5K to raise money for the Madison
                       Country Rural Health Council",
                       address: "Trudy Fitness Center, Hamilton")
-      expect(ev.days_until(ref)).to be > 0
-    end
+      expect(ev.days_until(ref)).to eq("Today")
 
-    it "should return negative number of days until event if passed" do
-      ref = DateTime.now
-      ev = Event.create!(user_id: 1,
-                      title: "5k chirstmas charity run",
-                      datetime: ref-1,
-                      description: "Come and run the christmas 5K to raise money for the Madison
-                      Country Rural Health Council",
-                      address: "Trudy Fitness Center, Hamilton")
-      expect(ev.days_until(ref)).to be < 0
+      ev.datetime = ref + 1
+      expect(ev.days_until(ref)).to eq("Tomorrow")
+
+      ev.datetime = ref + 2
+      expect(ev.days_until(ref)).to eq("2 days")
+
+      ev.datetime = ref - 1
+      expect(ev.days_until(ref)).to eq("Passed")
     end
 end

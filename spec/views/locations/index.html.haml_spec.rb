@@ -2,20 +2,28 @@ require 'rails_helper'
 
 RSpec.describe "index page", type: :feature do
   before :each do
-    a= Location.new(:title => "1", :address => "Utica, NY")
-    allow(a).to receive(:geocode_address).and_return({lat: 7.698744, lng: -0.593262})
+    a= Location.new(:title => "1",
+                    :description => "Test",
+                    :address => "Utica, NY")
+    allow(a).to receive(:geocode_address).and_return({lat: 43.101356, lng: -75.227759})
     a.save
 
-    b = Location.new(:title => "2", :address => "Orlando, FL")
-    allow(b).to receive(:geocode_address).and_return({lat: 6.434036, lng: 16.501465})
+    b = Location.new(:title => "2",
+                     :description => "Test",
+                     :address => "Orlando, FL")
+    allow(b).to receive(:geocode_address).and_return({lat: 28.485321, lng: -81.383864})
     b.save
 
-    c = Location.new(:title => "3", :address => "Edinburgh, UK")
-    allow(c).to receive(:geocode_address).and_return({lat: 42.8270, lng: -75.5446})
+    c = Location.new(:title => "3",
+                     :description => "Test",
+                     :address => "Edinburgh, UK")
+    allow(c).to receive(:geocode_address).and_return({lat: 55.944974, lng: -3.181998})
     c.save
 
-    d= Location.new(:title => "4", :address => "Seattle, WA")
-    allow(d).to receive(:geocode_address).and_return({lat: 35.807790, lng: -5.559082})
+    d= Location.new(:title => "4",
+                    :description => "Test",
+                    :address => "Seattle, WA")
+    allow(d).to receive(:geocode_address).and_return({lat: 47.632605, lng: -122.364678})
     d.save
 
     visit "/locations"
