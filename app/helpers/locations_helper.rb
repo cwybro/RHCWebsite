@@ -1,4 +1,5 @@
 module LocationsHelper
+    require 'opengraph'
     def geocode(address)
         uri = URI.escape("https://maps.googleapis.com/maps/api/geocode/json?address=#{address}")
         uri = URI.parse(uri)
@@ -17,6 +18,11 @@ module LocationsHelper
         geo = Geokit::Geocoders::MultiGeocoder.geocode location
         return [geo.lat, geo.lng] if geo.success else [nil, nil]
     end
+
+    def get_opengraph_obj(location)
+        og = OpenGraph.new(location.title, "website", event_path(location), location.image.url)
+    end
+
 
 
 end
