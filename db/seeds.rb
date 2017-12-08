@@ -14,11 +14,13 @@ User.create(email: 'vudinhquan124@gmail.com', password: '123rhc')
 Location.delete_all
 
 Location.create(title: "Triangle Park",
+                description: "Hiking area",
                 address: "Triangle Park, Hamilton NY")
 Location.create(title: "Harry Lang Cross Country and Fitness Trails",
                 description: "Hiking area",
                 address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY")
 Location.create(title: "Cazenovia Recreation Center",
+                description: "Hiking area",
                 address: "22 Burton St, Cazenovia, NY 13035")
 Location.create(title: "Chittenango Falls State Park",
                 description: "Winding gorge trails & a footbridge offer views of a 167-ft. waterfall, with areas for picnics.",
