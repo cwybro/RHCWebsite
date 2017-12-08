@@ -34,7 +34,6 @@ RSpec.describe "index page", type: :feature do
     fill_in "miles of", :with => "Hamilton, NY"
     click_button "Refine the list of locations"
     names = page.all(".card-title")
-    byebug
     expect(names.length).to eq(1)
 
     # visit "/locations"
