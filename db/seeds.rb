@@ -15,11 +15,13 @@ User.create(email: 'admin@mco.com', password: 'mcoF2017', admin: true)
 Location.delete_all
 
 Location.create(title: "Triangle Park",
+                description: "Hiking area",
                 address: "Triangle Park, Hamilton NY")
 Location.create(title: "Harry Lang Cross Country and Fitness Trails",
                 description: "Hiking area",
                 address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY")
 Location.create(title: "Cazenovia Recreation Center",
+                description: "Hiking area",
                 address: "22 Burton St, Cazenovia, NY 13035")
 Location.create(title: "Chittenango Falls State Park",
                 description: "Winding gorge trails & a footbridge offer views of a 167-ft. waterfall, with areas for picnics.",
@@ -56,3 +58,19 @@ Recap.delete_all
 
 Event.first.recap = Recap.new(attendance: 500, description: "It was hugely successful!")
 Event.last.recap = Recap.new(attendance: 10, description: "It was fun!")
+
+
+Tag.delete_all
+Tag.create(name: "dog-friendly")
+Tag.create(name: "kid-friendly")
+Tag.create(name: "hiking")
+Tag.create(name: "swimming")
+Tag.create(name: "running")
+
+Tagging.delete_all
+Tagging.create(tag_id: Tag.first.id,
+              event_id: Event.first.id)
+Tagging.create(tag_id: Tag.last.id,
+              event_id: Event.first.id)
+Tagging.create(tag_id: Tag.first.id,
+              event_id: Event.last.id)

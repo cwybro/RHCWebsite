@@ -1,8 +1,17 @@
+
 %h2 Upcoming Events
+=form_tag events_path, :class => 'filter-form', :method => :get do
+  .filter.row
+    .col-3
+      =label_tag "tag_filter", "Filter by tag:"
+      =select_tag :tag, options_for_select(@all_tags), include_blank: true, class: "form-control col-xs-3"
+    .col-3
+      =submit_tag "Refine the list of events", class: 'btn btn-primary filter-btn'
+
 - unless @upcoming_events.empty?
-    = render "events/list_events", events: @upcoming_events
+  = render "events/list_events", events: @upcoming_events
 - else
-    %em No events found
+  %em No events found
 
 %br
 = link_to "Back to Home", root_url,  class: 'btn btn-outline-primary btn-sm home-link'

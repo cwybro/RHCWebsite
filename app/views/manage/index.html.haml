@@ -1,0 +1,9 @@
+%h2 My Events
+- unless @user_events.empty?
+    = render "events/list_events", events: @user_events
+- else
+    %em You don't own any events
+
+%br
+= link_to "Back to Home", root_url,  class: 'btn btn-outline-primary btn-sm home-link'
+= link_to "Add new event", new_event_url, class: 'btn btn-primary btn-sm'
