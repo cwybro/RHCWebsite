@@ -16,16 +16,23 @@ Location.delete_all
 
 Location.create(title: "Triangle Park",
                 description: "Hiking area",
-                address: "Triangle Park, Hamilton NY")
+                address: "Triangle Park, Hamilton NY",
+                image: File.new("#{Rails.root}/app/assets/images/trianglePark.png"))
+
 Location.create(title: "Harry Lang Cross Country and Fitness Trails",
                 description: "Hiking area",
-                address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY")
+                address: "Harry Lang Cross Country and Fitness Trails, 13 Oak Drive, Hamilton NY",
+                image: File.new("#{Rails.root}/app/assets/images/harryLang.png"))
+
 Location.create(title: "Cazenovia Recreation Center",
                 description: "Hiking area",
-                address: "22 Burton St, Cazenovia, NY 13035")
+                address: "22 Burton St, Cazenovia, NY 13035",
+                image: File.new("#{Rails.root}/app/assets/images/cazenoviaRecCenter.png"))
+
 Location.create(title: "Chittenango Falls State Park",
                 description: "Winding gorge trails & a footbridge offer views of a 167-ft. waterfall, with areas for picnics.",
-                address: "Chittenango Falls State Park, Cazenovia, NY 13035")
+                address: "Chittenango Falls State Park, Cazenovia, NY 13035",
+                image: File.new("#{Rails.root}/app/assets/images/chittFallsStatePark.png"))
 
 Event.delete_all
 
@@ -38,18 +45,21 @@ Event.create(user_id: user_id_1,
             description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
             address: "Trudy Fitness Center, Hamilton",
             image: File.new("#{Rails.root}/app/assets/images/trudyfitnesscenter.jpg"))
+
 Event.create(user_id: user_id_1,
             title: "Slide down the hill",
             datetime: DateTime.iso8601('2018-01-01T04:05:06-05:00'),  # require 'date'
             description: "Rolling down the hill since 1819",
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"))
+
 Event.create(user_id: user_id_2,
             title: "Slide down the other hill",
             datetime: DateTime.iso8601('2018-01-01T04:10:06-05:00'),  # same date, different time as above.
             description: "Rolling down the hill since 1819",
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/slidingdown2.jpg"))
+
 Event.create(user_id: user_id_1,
             title: "10k around campus",
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
@@ -57,6 +67,19 @@ Event.create(user_id: user_id_1,
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/colgatecampusrun.jpg"))
 
+Event.create(user_id: user_id_1,
+            title: "Brisk walk around campus",
+            datetime: DateTime.now + 0.1,  # require 'date'
+            description: "Come run with us!",
+            address: "Colgate University",
+            image: File.new("#{Rails.root}/app/assets/images/briskWalk.jpg"))
+
+Event.create(user_id: user_id_1,
+            title: "Colgate Marathon",
+            datetime: DateTime.now - 1,  # require 'date'
+            description: "Hosted by Professor Mulry -- come run!",
+            address: "Colgate University",
+            image: File.new("#{Rails.root}/app/assets/images/colgateMarathon.png"))
 
 Recap.delete_all
 
