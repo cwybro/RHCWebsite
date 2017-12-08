@@ -27,7 +27,9 @@ RSpec.describe "index page", type: :feature do
                 title: "10k around campus",
                 datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
                 description: "Come run with us!",
-                address: "Colgate University")
+                address: "Colgate University",
+                user: @user)
+
     Tag.create(name: "dog-friendly")
     Tag.create(name: "kid-friendly")
     Tag.create(name: "hiking")
@@ -45,17 +47,17 @@ RSpec.describe "index page", type: :feature do
   end
 
   it "should do the correct filtering when filtering by tag" do
-    names = page.all(".card-title")
+    names = page.all(".event-title")
     expect(names.length).to eq(4)
 
     select "dog-friendly", :from => :tag
     click_button "Refine the list of events"
-    names = page.all(".card-title")
+    names = page.all(".event-title")
     expect(names.length).to eq(2)
 
     select "running", :from => :tag
     click_button "Refine the list of events"
-    names = page.all(".card-title")
+    names = page.all(".event-title")
     expect(names.length).to eq(1)
   end
 end

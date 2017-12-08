@@ -82,8 +82,7 @@ class EventsController < ApplicationController
           flash[:warning] = "Invalid id, event not found"
           redirect_to events_path and return
       end
-      days = @event.days_until(DateTime.now)
-      @now = days < 1 ? "Today" : "#{days} days"
+      @now = @event.days_until(DateTime.now)
       @valid_permission = !current_user.nil? && (current_user.admin || current_user.id == @event.user_id)
   end
 
