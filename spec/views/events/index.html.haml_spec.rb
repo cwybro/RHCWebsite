@@ -45,17 +45,17 @@ RSpec.describe "index page", type: :feature do
   end
 
   it "should do the correct filtering when filtering by tag" do
-    names = page.all(".event-title")
+    names = page.all(".card-title")
     expect(names.length).to eq(4)
 
     select "dog-friendly", :from => :tag
     click_button "Refine the list of events"
-    names = page.all(".event-title")
+    names = page.all(".card-title")
     expect(names.length).to eq(2)
 
     select "running", :from => :tag
     click_button "Refine the list of events"
-    names = page.all(".event-title")
+    names = page.all(".card-title")
     expect(names.length).to eq(1)
   end
 end
