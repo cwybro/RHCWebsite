@@ -20,6 +20,9 @@ module NavigationHelpers
 
     when /the rental properties page$/
       rental_properties_path
+
+  when /show event page/
+      event_path(@event)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
