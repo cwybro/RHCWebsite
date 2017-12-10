@@ -263,9 +263,8 @@ end
 Then("I should see events sorted by date") do
   dates=[]
   all(".card-title").each do |title|
-    e= Event.where(title: title)
-    date= e.date
-    dates << date
+    e= Event.where(title: title.text).first
+    dates << e.date
   end
   dates.should == dates.sort
 end

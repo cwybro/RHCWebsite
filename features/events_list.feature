@@ -24,7 +24,7 @@ Feature: Events list
       | 2       | 3       |
       | 1       | 1       |
 
-    Scenario: See events sorted by datetime
+    Scenario: See events sorted by date
       When I go to the events page
       And I should see "Slide Down the hill"
       Then I should see events sorted by date
