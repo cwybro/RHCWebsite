@@ -242,6 +242,12 @@ Given("these Events:") do |table|
   end
 end
 
+Given("these Locations:") do |table|
+  table.hashes.each do |h|
+    Location.create(h)
+  end
+end
+
 Given("these Tags:") do |table|
   table.hashes.each do |h|
     Tag.create(h)
@@ -267,6 +273,11 @@ Then("I should see events sorted by date") do
     dates << e.date
   end
   dates.should == dates.sort
+end
+
+Then("I should see {int} {string}") do |count, tag|
+  tags = all(tag)
+  expect(tags.length).to eq(count)
 end
 
   # table is a Cucumber::MultilineArgument::DataTable

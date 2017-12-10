@@ -23,6 +23,9 @@ module NavigationHelpers
 
   when /show event page/
       event_path(@event)
+
+  when /show location page/
+      location_path(@location)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
