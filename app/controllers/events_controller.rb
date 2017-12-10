@@ -3,16 +3,26 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, :except => [:show, :index]
 
   def index
+
     if(params[:tag] && Tag.exists?(params[:tag]))
-      @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+      if current_user.try(:admin?)
+        @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+      else
+        @upcoming_events = Event.tagged_with(params[:tag]).where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+                                                          .where('is_reviewed = ?', true)
+      end
       @current_tag= Tag.find_by_id(params[:tag])
     else
-      @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+      if current_user.try(:admin?)
+        @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+      else
+        @upcoming_events = Event.where('datetime > ?', DateTime.now.beginning_of_day).order(:datetime)
+                                .where('is_reviewed = ?', true)
+      end
     end
     @all_tags= Tag.all.map {|t| [t.name, t.id]}
     @all_tags.sort!
     @now = DateTime.now
-
   end
 
   def new
@@ -50,6 +60,10 @@ class EventsController < ApplicationController
   def update
     id = params[:id]
     e = Event.find(id)
+    if !current_user.try(:admin?) && !params[:is_reviewed].nil?
+      flash[:warning] = "You don't have sufficient permission to edit this!"
+      redirect_to event_path(@event) and return
+    end
     e.update(create_update_params)
     if e.save
       flash[:success] = "Event \"#{e.title}\" updated"
@@ -74,6 +88,6 @@ class EventsController < ApplicationController
 
   private
   def create_update_params
-    params.require(:event).permit(:user_id, :title, :description, :address, :datetime, :image)
+    params.require(:event).permit(:user_id, :is_reviewed, :title, :description, :address, :datetime, :image)
   end
 end

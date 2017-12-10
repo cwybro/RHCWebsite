@@ -144,6 +144,7 @@ RSpec.describe RecapsController, type: :controller do
   private
     def recap_params(event_id)
       return {
+        is_reviewed: false,
         event_id: event_id,
         attendance: 100,
         description: 'It was a huge party!'

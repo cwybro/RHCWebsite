@@ -9,6 +9,7 @@ RSpec.describe Event, type: :model do
     it "should be able to create an Event model with the correct methods on it" do
       ev = Event.create!(
                         user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -35,6 +36,7 @@ RSpec.describe Event, type: :model do
     it "shouldn't accept strings for datetime" do
         expect {
             Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: "Sometime last week",
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -45,6 +47,7 @@ RSpec.describe Event, type: :model do
 
     it "should be able to reduce the address down to its broad area" do
       ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -52,6 +55,7 @@ RSpec.describe Event, type: :model do
                         address: "Trudy Fitness Center, Hamilton")
         expect(ev.area).to eq("Trudy Fitness Center, Hamilton")
         ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -62,6 +66,7 @@ RSpec.describe Event, type: :model do
 
     it "should be able to correctly format the date to a readable format" do
         ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -72,6 +77,7 @@ RSpec.describe Event, type: :model do
 
     it "should correctly format the time of the event" do
         ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -82,6 +88,7 @@ RSpec.describe Event, type: :model do
 
     it "should be able to add a tag to the tags list of the Event" do
         ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -94,6 +101,7 @@ RSpec.describe Event, type: :model do
     end
     it "should collect events from today using the :today scope" do
         today_ev = Event.create!(user_id: 1,
+                        is_reviewed: false,
                         title: "5k chirstmas charity run",
                         datetime: DateTime.current(),  # require 'date'
                         description: "Come and run the christmas 5K to raise money for the Madison
@@ -110,6 +118,7 @@ RSpec.describe Event, type: :model do
     it "should return appropriate date string for passed and upcoming events" do
       ref = DateTime.now
       ev = Event.create!(user_id: 1,
+                      is_reviewed: false,
                       title: "5k chirstmas charity run",
                       datetime: ref,
                       description: "Come and run the christmas 5K to raise money for the Madison

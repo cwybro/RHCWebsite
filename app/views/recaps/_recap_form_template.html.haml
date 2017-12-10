@@ -1,16 +1,18 @@
-= form_for [@event, @recap] do |f|
-  - if @recap.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@recap.errors.count, "error")} prohibited this event_recap from being saved:"
-      %ul
-        - @erecap.errors.full_messages.each do |message|
-          %li= message
+=form_for [@event, @recap] do |f|
+  .field.form-group
+    =f.label :attendance
+    =f.number_field :attendance
+  .field.form-group
+    =f.label :description
+    =f.text_area :description
+  -if current_user.try(:admin?)
+    .field.form-group
+      =f.label :is_reviewed, "Is the event reviewed?"
+      =f.check_box :is_reviewed, :checked => false, required: false
+  -else
+    .field.form-group
+      =f.hidden_field :is_reviewed, :value => false, required: false
 
   .field
-    = f.label :attendance
-    = f.number_field :attendance
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save', class: 'btn btn-primary btn-sm'
+    =link_to 'Back', event_path(@event), class: 'btn btn-outline-primary btn-sm'
+    =f.submit 'Save', class: 'btn btn-primary btn-sm'

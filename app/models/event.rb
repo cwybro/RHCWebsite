@@ -4,8 +4,8 @@ class Event < ApplicationRecord
     has_one :recap, :dependent => :destroy
     belongs_to :user
     validates :title, :description, :address, :datetime, :user_id, presence: true
+    validates :is_reviewed, inclusion: { in: [ true, false ] }
     validate :timeliness_of_datetime
-
     scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
