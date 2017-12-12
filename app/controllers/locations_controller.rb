@@ -28,7 +28,7 @@ class LocationsController < ApplicationController
     if current_user.try(:admin?)
       p=Location.new(create_update_params)
       if p.save
-        flash[:notice] = "New location \"#{p.title}\" created"
+        flash[:notice] = "New location \'#{p.title}\' created"
         redirect_to locations_path
       else
         flash[:warning]= "Error creating new location"
