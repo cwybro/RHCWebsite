@@ -73,10 +73,10 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
     end
 end
 
-Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |property, description|
+Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |location, description|
   found = false
   find_all('div.card-body').each do |div|
-    if div.find('p').text == description && div.find('h4').text == property
+    if div.find('p').text == description && div.find('h4').text == location 
       found = true
       break
     end
@@ -84,10 +84,10 @@ Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |property, de
   expect(found).to be true
 end
 
-Then /^(?:|I )should see that "(.+)" has a description of "(.+)"$/ do |property, description|
+Then /^(?:|I )should see that "(.+)" has a description of "(.+)"$/ do |location, description|
   current_div = find_all('div.col-6')[0]
-  expect(current_div.find_all('div.header')[0].text).to eq "Triangle Park"
-  expect(current_div.find_all('div.section-subtitle')[1].text).to eq "Hiking area"
+  expect(current_div.find_all('div.header')[0].text).to eq location
+  expect(current_div.find_all('div.section-subtitle')[1].text).to eq description
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
