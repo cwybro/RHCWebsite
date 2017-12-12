@@ -84,6 +84,17 @@ Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |location, de
   expect(found).to be true
 end
 
+Then /^(?:|I )should see the event "(.+)"$/ do |event|
+    found = false
+    find_all('div.card-body').each do |div|
+        if div.find('h4').text == event
+            found = true
+            break
+        end
+    end
+    expect(found).to be true
+end
+
 Then /^(?:|I )should see that "(.+)" has a description of "(.+)"$/ do |location, description|
   current_div = find_all('div.col-6')[0]
   expect(current_div.find_all('div.header')[0].text).to eq location

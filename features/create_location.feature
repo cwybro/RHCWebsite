@@ -29,3 +29,13 @@ Feature: Create a new location
     Then I click "Details"
     And I should be on the location page with id 1
     And I should see that "Triangle Park" has a description of "Hiking area"
+
+  Scenario: Create a new location with invalid information 
+    Given I am an admin
+    Given I am on the create new location page
+    When I fill in the following:
+      | Title                     | Triangle Park              |
+      | Description               | Hiking area                |
+
+    When I press "Create Location" 
+    Then I should be on the new location page
