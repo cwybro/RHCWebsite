@@ -280,5 +280,16 @@ Then("I should see {int} {string}") do |count, tag|
   expect(tags.length).to eq(count)
 end
 
+When('I click on the {string} button belonging to the {string} card') do |button_name, card_name|
+    match = false
+    all('.card').each do |card|
+        if card.has_content?(card_name)
+            match = true
+            within(card) { click_link button_name }
+        end
+    end
+    expect(match).to eq(true)
+end
+
   # table is a Cucumber::MultilineArgument::DataTable
    # Write code here that turns the phrase above into concrete actions
