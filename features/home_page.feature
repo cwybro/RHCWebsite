@@ -5,8 +5,8 @@ Feature: Home Page
 
   Background: The website already has some existing events and locations.
   Given these Users:
-      | email                   | password |
-      | qvu@colgate.edu         | rhc123   |
+    | email                   | password |
+    | qvu@colgate.edu         | rhc123   |
   And these Events:
     | title                    | description                      | address            | datetime                                      | user_id |
     | 10k around campus        | Come run with us!                | Colgate University | DateTime.iso8601('2018-01-01T04:05:06-05:00') | 1       |
@@ -30,5 +30,5 @@ Feature: Home Page
     Given I am on the home page
     Then I should see "Locations"
     And I should see "Explore new places for hiking, sports, and more"
-    When I click on the "Explore" button belonging to the "Locations" event
+    When I click on the "Explore" button belonging to the "Locations" card
     Then I should be on the locations page
