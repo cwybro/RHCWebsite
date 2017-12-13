@@ -22,7 +22,7 @@
                 %h4.card-title Location
                 %p.card-text #{@event.address}
     -if @valid_permission
-        .top-spacing= link_to "Edit event", edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
+        .top-spacing= link_to 'Edit event', edit_event_url(@event), class: 'btn btn-outline-primary btn-sm'
     %hr
 
     -if !@event.recap.nil?

@@ -31,6 +31,17 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /^I am an admin$/ do
+  email = 'admin@mco.com'
+  password = 'mcoF2017'
+  User.new(:email => email, :password => password, :admin => true).save!
+
+  visit '/users/sign_in'
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  click_button "Log in"
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -278,6 +289,11 @@ end
 Then("I should see {int} {string}") do |count, tag|
   tags = all(tag)
   expect(tags.length).to eq(count)
+end
+
+And /^(?:|I )should see that "([^"]*)" has a description of "(\$[^"]*)"$/ do |title, description|
+  row = all('.event').find('tr') { |el| el.text =~ Regexp.new(title) }
+  expect(row.find('.description')).to eq description
 end
 
   # table is a Cucumber::MultilineArgument::DataTable
