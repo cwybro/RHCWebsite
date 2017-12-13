@@ -24,7 +24,7 @@ Feature: Show an Event
 
   Scenario: Normal user can see all relevant information for a given event
     Given I have an event with id 2
-    And I am on show event page
+    And I am on the show event page
     Then I should see "Slide Down the hill"
       And I should see "Back to list of events"
       And I should see "Sliding down the hill since 1819"

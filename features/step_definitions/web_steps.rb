@@ -78,11 +78,6 @@ end
 # TODO: Add support for checkbox, select or option
 # based on naming conventions.
 #
-When /^(?:|I )fill in the following:$/ do |fields|
-  fields.rows_hash.each do |name, value|
-    fill_in(name, :with => value)
-  end
-end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
@@ -229,14 +224,6 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == path_to(page_name)
-  else
-    assert_equal path_to(page_name), current_path
-  end
-end
 
 Given("these Events:") do |table|
   table.hashes.each do |h|
@@ -309,35 +296,17 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
         assert_equal path_to(page_name), current_path
     end
 end
-  
+
 When /^(?:|I )fill in the following:$/ do |fields|
     fields.rows_hash.each do |name, value|
         fill_in(name, :with => value)
     end
 end
 
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
-    if page.respond_to? :should
-        page.should have_content(text)
-    else
-        assert page.has_content?(text)
-    end
-end
-
-Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
-    regexp = Regexp.new(regexp)
-
-    if page.respond_to? :should
-        page.should have_xpath('//*', :text => regexp)
-    else
-        assert page.has_xpath?('//*', :text => regexp)
-    end
-end
-
 Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |location, description|
   found = false
   find_all('div.card-body').each do |div|
-    if div.find('p').text == description && div.find('h4').text == location 
+    if div.find('p').text == description && div.find('h4').text == location
       found = true
       break
     end
