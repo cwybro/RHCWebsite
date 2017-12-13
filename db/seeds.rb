@@ -44,7 +44,8 @@ Event.create(user: user_1,
             datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
             description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
             address: "Trudy Fitness Center, Hamilton",
-            image: File.new("#{Rails.root}/app/assets/images/trudyfitnesscenter.jpg"))
+            image: File.new("#{Rails.root}/app/assets/images/trudyfitnesscenter.jpg"),
+            featured: true)
 
 Event.create(user: user_1,
             is_reviewed: false,
@@ -52,8 +53,9 @@ Event.create(user: user_1,
             datetime: DateTime.iso8601('2018-01-01T04:05:06-05:00'),  # require 'date'
             description: "Rolling down the hill since 1819",
             address: "Colgate University",
-            image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"))
-
+            image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"),
+            featured: true)
+byebug
 Event.create(user: user_2,
             is_reviewed: false,
             title: "Slide down the other hill",
