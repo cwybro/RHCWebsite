@@ -21,6 +21,17 @@ Given /^I am an admin$/ do
   click_button "Log in"
 end
 
+
+# Single-line step scoper
+When /^(.*) within (.*[^:])$/ do |step, parent|
+  with_scope(parent) { When step }
+end
+
+# Multi-line step scoper
+When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
+  with_scope(parent) { When "#{step}:", table_or_string }
+end
+
 Given /^I am a normal user$/ do
   email = 'user@mco.com'
   password = 'mcoF2017'
@@ -40,6 +51,243 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^(?:|I )press "([^"]*)"$/ do |button|
+  click_button(button)
+end
+
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
+end
+
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+  fill_in(field, :with => value)
+end
+
+When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
+  fill_in(field, :with => value)
+end
+
+# Use this to fill in an entire form with data from a table. Example:
+#
+#   When I fill in the following:
+#     | Account Number | 5002       |
+#     | Expiry date    | 2009-11-01 |
+#     | Note           | Nice guy   |
+#     | Wants Email?   |            |
+#
+# TODO: Add support for checkbox, select or option
+# based on naming conventions.
+#
+
+When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
+  select(value, :from => field)
+end
+
+When /^(?:|I )check "([^"]*)"$/ do |field|
+  check(field)
+end
+
+When /^(?:|I )uncheck "([^"]*)"$/ do |field|
+  uncheck(field)
+end
+
+When /^(?:|I )choose "([^"]*)"$/ do |field|
+  choose(field)
+end
+
+When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
+  attach_file(field, File.expand_path(path))
+end
+
+Then /^(?:|I )should see "([^']*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_content(text)
+  else
+    assert page.has_content?(text)
+  end
+end
+
+Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
+  if page.respond_to? :should
+    page.should have_xpath('//*', :text => regexp)
+  else
+    assert page.has_xpath?('//*', :text => regexp)
+  end
+end
+
+Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+  if page.respond_to? :should
+    page.should have_no_content(text)
+  else
+    assert page.has_no_content?(text)
+  end
+end
+
+Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
+  if page.respond_to? :should
+    page.should have_no_xpath('//*', :text => regexp)
+  else
+    assert page.has_no_xpath?('//*', :text => regexp)
+  end
+end
+
+Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
+  with_scope(parent) do
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
+    if field_value.respond_to? :should
+      field_value.should =~ /#{value}/
+    else
+      assert_match(/#{value}/, field_value)
+    end
+  end
+end
+
+Then /^the "([^"]*)" field(?: within (.*))? should not contain "([^"]*)"$/ do |field, parent, value|
+  with_scope(parent) do
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
+    if field_value.respond_to? :should_not
+      field_value.should_not =~ /#{value}/
+    else
+      assert_no_match(/#{value}/, field_value)
+    end
+  end
+end
+
+Then /^the "([^"]*)" field should have the error "([^"]*)"$/ do |field, error_message|
+  element = find_field(field)
+  classes = element.find(:xpath, '..')[:class].split(' ')
+
+  form_for_input = element.find(:xpath, 'ancestor::form[1]')
+  using_formtastic = form_for_input[:class].include?('formtastic')
+  error_class = using_formtastic ? 'error' : 'field_with_errors'
+
+  if classes.respond_to? :should
+    classes.should include(error_class)
+  else
+    assert classes.include?(error_class)
+  end
+
+  if page.respond_to?(:should)
+    if using_formtastic
+      error_paragraph = element.find(:xpath, '../*[@class="inline-errors"][1]')
+      error_paragraph.should have_content(error_message)
+    else
+      page.should have_content("#{field.titlecase} #{error_message}")
+    end
+  else
+    if using_formtastic
+      error_paragraph = element.find(:xpath, '../*[@class="inline-errors"][1]')
+      assert error_paragraph.has_content?(error_message)
+    else
+      assert page.has_content?("#{field.titlecase} #{error_message}")
+    end
+  end
+end
+
+Then /^the "([^"]*)" field should have no error$/ do |field|
+  element = find_field(field)
+  classes = element.find(:xpath, '..')[:class].split(' ')
+  if classes.respond_to? :should
+    classes.should_not include('field_with_errors')
+    classes.should_not include('error')
+  else
+    assert !classes.include?('field_with_errors')
+    assert !classes.include?('error')
+  end
+end
+
+Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, parent|
+  with_scope(parent) do
+    field_checked = find_field(label)['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
+Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
+  with_scope(parent) do
+    field_checked = find_field(label)['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_false
+    else
+      assert !field_checked
+    end
+  end
+end
+
+
+Given("these Events:") do |table|
+  table.hashes.each do |h|
+    Event.create(h)
+  end
+end
+
+Given("these Locations:") do |table|
+  table.hashes.each do |h|
+    Location.create(h)
+  end
+end
+
+Given("these Tags:") do |table|
+  table.hashes.each do |h|
+    Tag.create(h)
+  end
+end
+
+Given("these Taggings:") do |table|
+  table.hashes.each do |h|
+    Tagging.create(h)
+  end
+end
+
+Given("these Users:") do |table|
+  table.hashes.each do |h|
+    User.create(h)
+  end
+end
+
+Then("I should see events sorted by date") do
+  dates=[]
+  all(".card-title").each do |title|
+    e= Event.where(title: title.text).first
+    dates << e.date
+  end
+  dates.should == dates.sort
+end
+
+Then("I should see {int} {string}") do |count, tag|
+  tags = all(tag)
+  expect(tags.length).to eq(count)
+end
+
+When('I click on the {string} button belonging to the {string} card') do |button_name, card_name|
+    match = false
+    all('.card').each do |card|
+        if card.has_content?(card_name)
+            match = true
+            within(card) { click_link button_name }
+        end
+    end
+    expect(match).to eq(true)
+end
+
+And /^(?:|I )should see that "([^"]*)" has a description of "(\$[^"]*)"$/ do |title, description|
+  row = all('.event').find('tr') { |el| el.text =~ Regexp.new(title) }
+  expect(row.find('.description')).to eq description
+end
+
+
+  # table is a Cucumber::MultilineArgument::DataTable
+   # Write code here that turns the phrase above into concrete actions
 Then /^(?:|I )should be on (.+)$/ do |page_name|
     current_path = URI.parse(current_url).path
     if current_path.respond_to? :should
@@ -48,35 +296,17 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
         assert_equal path_to(page_name), current_path
     end
 end
-  
+
 When /^(?:|I )fill in the following:$/ do |fields|
     fields.rows_hash.each do |name, value|
         fill_in(name, :with => value)
     end
 end
 
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
-    if page.respond_to? :should
-        page.should have_content(text)
-    else
-        assert page.has_content?(text)
-    end
-end
-
-Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
-    regexp = Regexp.new(regexp)
-
-    if page.respond_to? :should
-        page.should have_xpath('//*', :text => regexp)
-    else
-        assert page.has_xpath?('//*', :text => regexp)
-    end
-end
-
 Then /^(?:|I )should see that "(.+)" has an address of "(.+)"$/ do |location, description|
   found = false
   find_all('div.card-body').each do |div|
-    if div.find('p').text == description && div.find('h4').text == location 
+    if div.find('p').text == description && div.find('h4').text == location
       found = true
       break
     end
@@ -99,10 +329,6 @@ Then /^(?:|I )should see that "(.+)" has a description of "(.+)"$/ do |location,
   current_div = find_all('div.col-6')[0]
   expect(current_div.find_all('div.header')[0].text).to eq location
   expect(current_div.find_all('div.section-subtitle')[1].text).to eq description
-end
-
-When /^(?:|I )press "([^"]*)"$/ do |button|
-    click_button(button)
 end
 
 When /^(?:|I )click "([^"]*)"$/ do |tag|
