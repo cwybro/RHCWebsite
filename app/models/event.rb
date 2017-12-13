@@ -7,14 +7,17 @@ class Event < ApplicationRecord
     validates :is_reviewed, inclusion: { in: [ true, false ] }
     validate :timeliness_of_datetime
     scope :today, -> { where('datetime > ? AND datetime < ?', DateTime.current().beginning_of_day, DateTime.current().end_of_day) }
+    scope :future, -> { where('datetime > ?', DateTime.current().beginning_of_day) }
+    scope :featured_events, -> {where('featured = ?', true)}
+    ###scope :future_featured, -> { where('datetime > ? AND featured = ?', DateTime.current().beginning_of_day) }
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
     has_attached_file :image,
-    :styles=> {:header => "800x400#", :thumb => "100x100#", :grid => "300x200#" }
+    :styles=> {:header => "800x400#", :grid => "300x200#" }
     # no default, use CSS gradient instead.
 
     validates_attachment :image,
-        :content_type => {:content_type => ["image/jpeg", "image/png",]}
+        :content_type => {:content_type => ["image/jpg", "image/jpeg", "image/png",]}
 
 
     def date

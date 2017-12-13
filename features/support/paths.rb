@@ -21,11 +21,31 @@ module NavigationHelpers
     when /the rental properties page$/
       rental_properties_path
 
-  when /show event page/
-      event_path(@event)
+    when /show event page/
+        event_path(@event)
 
-  when /show location page/
-      location_path(@location)
+    when /show location page/
+        location_path(@location)
+      
+    when  /^the home page$/
+        "/"
+    when /^the create new location page$/
+        "/locations/new"
+      
+    when /^the create new event page$/
+        "/events/new"
+      
+    when  /^the locations page$/
+        "/locations"
+      
+    when /^the events page$/
+        "/events"
+      
+    when /^the location page with id (\d+)$/
+        "/locations/#{$1}"
+      
+    when /^the sign in page$/
+        "/users/sign_in"
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -46,3 +66,4 @@ module NavigationHelpers
 end
 
 World(NavigationHelpers)
+

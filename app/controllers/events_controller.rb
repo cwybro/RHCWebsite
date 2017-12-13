@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def create
     p = Event.new(create_update_params)
     if p.save
-      flash[:success] = "New event \"#{p.title}\" created"
+      flash[:success] = "New event \'#{p.title}\' created"
       redirect_to events_path
     else
       flash[:warning]= "Error creating new event"

@@ -35,26 +35,28 @@ Location.create(title: "Chittenango Falls State Park",
 
 Event.delete_all
 
-user_id_1 = User.first.id
-user_id_2 = User.last.id
+user_1 = User.first
+user_2 = User.last
 
-Event.create(user_id: user_id_1,
+Event.create(user: user_1,
             is_reviewed: true,
             title: "5k christmas charity run",
             datetime: DateTime.iso8601('2017-12-25T04:05:06-05:00'),  # require 'date'
             description: "Come and run the christmas 5K to raise money for the Madison Country Rural Health Council",
             address: "Trudy Fitness Center, Hamilton",
-            image: File.new("#{Rails.root}/app/assets/images/trudyfitnesscenter.jpg"))
+            image: File.new("#{Rails.root}/app/assets/images/trudyfitnesscenter.jpg"),
+            featured: true)
 
-Event.create(user_id: user_id_1,
+Event.create(user: user_1,
             is_reviewed: false,
             title: "Slide down the hill",
             datetime: DateTime.iso8601('2018-01-01T04:05:06-05:00'),  # require 'date'
             description: "Rolling down the hill since 1819",
             address: "Colgate University",
-            image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"))
-
-Event.create(user_id: user_id_2,
+            image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"),
+            featured: true)
+byebug
+Event.create(user: user_2,
             is_reviewed: false,
             title: "Slide down the other hill",
             datetime: DateTime.iso8601('2018-01-01T04:10:06-05:00'),  # same date, different time as above.
@@ -62,7 +64,7 @@ Event.create(user_id: user_id_2,
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/slidingdown2.jpg"))
 
-Event.create(user_id: user_id_1,
+Event.create(user: user_1,
             is_reviewed: true,
             title: "10k around campus",
             datetime: DateTime.iso8601('2018-02-28T04:05:06-05:00'),  # require 'date'
@@ -70,14 +72,15 @@ Event.create(user_id: user_id_1,
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/colgatecampusrun.jpg"))
 
-Event.create(user_id: user_id_1,
+Event.create(user: user_1,
+            is_reviewed: true,
             title: "Brisk walk around campus",
             datetime: DateTime.now + 0.1,  # require 'date'
             description: "Come run with us!",
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/briskWalk.jpg"))
 
-Event.create(user_id: user_id_1,
+Event.create(user: user_1,
             title: "Colgate Marathon",
             datetime: DateTime.now - 1,  # require 'date'
             description: "Hosted by Professor Mulry -- come run!",
@@ -103,9 +106,9 @@ Tagging.create(tag_id: Tag.first.id,
 Recap.delete_all
 Event.first.recap = Recap.new(event_id: Event.first.id,
                               is_reviewed: true,
-                              attendance: 500, 
+                              attendance: 500,
                               description: "It was hugely successful!")
 Event.last.recap = Recap.new(event_id: Event.last.id,
                               is_reviewed: false,
-                              attendance: 10, 
+                              attendance: 10,
                               description: "It was fun!")
