@@ -55,7 +55,7 @@ Event.create(user: user_1,
             address: "Colgate University",
             image: File.new("#{Rails.root}/app/assets/images/slidingdown.jpg"),
             featured: true)
-
+byebug
 Event.create(user: user_2,
             is_reviewed: false,
             title: "Slide down the other hill",

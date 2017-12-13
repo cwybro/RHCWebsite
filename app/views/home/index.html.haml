@@ -17,15 +17,17 @@
             - if i == 0
                 .carousel-item.active
                     =image_tag(feature.image, :alt => feature.title, :class => "img-responsive")
-                    .carousel-caption.d-none.d-md-block
-                        %h3.first-slide-label= feature.title
-                        %p.first-slide-description= truncate(feature.description, length: 100)
+                    %a{href: event_path(feature)}
+                        .carousel-caption.d-none.d-md-block
+                            %h3.slide-title.first-slide-label= feature.title
+                            %p.slide-desc.first-slide-description= truncate(feature.description, length: 100)
             - else
                 .carousel-item
-                    =image_tag(feature.images, :alt => feature.title, :class => "img-responsive")
-                    .carousel-caption.d-none.d-md-block
-                        %h3.second-slide-label= feature.title
-                        %p.second-slide-description= truncate(feature.description, length: 100)
+                    =image_tag(feature.image, :alt => feature.title, :class => "img-responsive")
+                    %a{href: event_path(feature)}
+                        .carousel-caption.d-none.d-md-block
+                            %h3.slide-title.second-slide-label= feature.title
+                            %p.slide-desc.second-slide-description= truncate(feature.description, length: 100)
             - i = i + 1
     %a.carousel-control-prev{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
         %span.carousel-control-prev-icon{"aria-hidden" => "true"}
