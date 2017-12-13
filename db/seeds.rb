@@ -71,6 +71,7 @@ Event.create(user: user_1,
             image: File.new("#{Rails.root}/app/assets/images/colgatecampusrun.jpg"))
 
 Event.create(user: user_1,
+            is_reviewed: true,
             title: "Brisk walk around campus",
             datetime: DateTime.now + 0.1,  # require 'date'
             description: "Come run with us!",
