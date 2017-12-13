@@ -307,5 +307,6 @@ And /^(?:|I )should see that "([^"]*)" has a description of "(\$[^"]*)"$/ do |ti
   expect(row.find('.description')).to eq description
 end
 
+
   # table is a Cucumber::MultilineArgument::DataTable
    # Write code here that turns the phrase above into concrete actions

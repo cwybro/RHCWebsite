@@ -19,7 +19,8 @@ Feature: Update existing event
     When I click on the "Details" button belonging to the "10k around campus" event
     Then I should see "Come run with us!"
     And I should see "Colgate University"
-    Then I press "Edit event"
+    And I should see "admin@mco.com"
+    When I follow "Edit event"
     And I fill in "Description" with "Free t-shirts after the event!"
     And I fill in "Address" with "Boston, MA"
     And I press "Update event details"

@@ -9,6 +9,8 @@ When('I click on the {string} button belonging to the {string} event') do |butto
     expect(match).to eq(true)
 end
 
+
+
 Given('I have an event with id {int}') do |id|
   @event = Event.find(id)
 end
