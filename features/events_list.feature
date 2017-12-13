@@ -8,10 +8,10 @@ Feature: Events list
       | qvu@colgate.edu         | rhc123   |
 
     Given these Events:
-      | title                    | description                      | address            | datetime                                      | user_id |
-      | 10k around campus        | Come run with us!                | Colgate University | DateTime.iso8601('2018-01-01T04:05:06-05:00') | 1       |
-      | Slide Down the hill      | Sliding down the hill since 1819 | Hamilton, NY       | DateTime.iso8601('2018-02-28T04:05:06-05:00') | 1       |
-      | Brisk walk around campus | Come walk with us!               | Colgate University | DateTime.iso8601('2018-02-14T04:05:06-05:00') | 1       |
+      | title                    | description                      | address            | datetime                                      | user_id | is_reviewed |
+      | 10k around campus        | Come run with us!                | Colgate University | DateTime.iso8601('2018-01-01T04:05:06-05:00') | 1       | true        |
+      | Slide Down the hill      | Sliding down the hill since 1819 | Hamilton, NY       | DateTime.iso8601('2018-02-28T04:05:06-05:00') | 1       | true        |
+      | Brisk walk around campus | Come walk with us!               | Colgate University | DateTime.iso8601('2018-02-14T04:05:06-05:00') | 1       | true        |
 
     Given these Tags:
       | name          |
